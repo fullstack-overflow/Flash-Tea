@@ -1,0 +1,111 @@
+#container {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+h1 {
+  margin: 50px 5% 20px;
+  font-size: 23px;
+  line-height: 25px;
+  font-weight: bold;
+  color: #66696E;
+}
+
+a {
+  color: #FF7A59;
+}
+
+.form {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  ion-input {
+    width: 90%;
+    border: 1px solid #5E656F;
+    border-radius: 8px;
+    color: #66696E;
+    font-size: 16px;
+    height: 40px;
+    padding-left: 10px !important;
+    margin: 0 0 0 5%;
+  }
+
+  ion-button {
+    width: 90%;
+    margin-left: 5%;
+    outline: none;
+  }
+
+  .label {
+    float: left;
+    margin-left: 5%;
+    font-size: 13px;
+    color: #66696E;
+  }
+}
+
+
+
+.forgot {
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 13px;
+  color: #66696E;
+}
+
+.btn-Signup {
+  background-color: #03A87C;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 4%;
+}
+
+.withlog {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  bottom: 50px;
+
+  p {
+    font-size: 15px;
+    color: #66696E;
+  }
+
+  .btn {
+    width: 90%;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+  }
+}
+
+
+
+.btn-control {
+  width: 100%;
+  display: flex;
+
+  button {
+    outline: none;
+    width: 50%;
+    height: 50px;
+    font-size: 16;
+    font-weight: bold;
+    color: #5E656F;
+    background-color: white;
+  }
+
+  .active {
+    background-color: #03A87C;
+    color: white;
+  }
+}

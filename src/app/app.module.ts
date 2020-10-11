@@ -17,6 +17,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ToastService } from './shared/toast.service';
 
+import { AuthenticationService } from './shared/authentication.service';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -34,6 +36,7 @@ import { ToastService } from './shared/toast.service';
     SplashScreen,
     AngularFirestoreModule,
     ToastService,
+    AuthenticationService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../shared/authentication.service';
 
+import { ToastService } from '../../shared/toast.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -10,10 +12,14 @@ import { AuthenticationService } from '../../shared/authentication.service';
 export class DashboardPage implements OnInit {
 
   constructor(
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    public toastServide: ToastService
   ) { }
 
   ngOnInit() {
   }
 
+  logOut() {
+    this.authService.signOut();
+  }
 }
