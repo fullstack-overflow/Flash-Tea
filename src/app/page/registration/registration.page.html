@@ -29,20 +29,22 @@
 
 <div id="container">
   <h1>Sign Up</h1>
-  <form class="form">
+  <form class="form" [formGroup]="registrationForm">
     <div>
       <p class="label">Email <a>*</a></p> <br />
-      <ion-input type="email" #email required></ion-input>
+      <ion-input formControlName="email" type="email" #email required></ion-input>
     </div>
     <div>
       <p class="label">Password <a>*</a></p> <br />
-      <ion-input type="password" #password required></ion-input>
+      <ion-input formControlName="password" type="password" #password required></ion-input>
     </div>
     <div>
       <p class="label">Comfirm password <a>*</a></p> <br />
-      <ion-input type="password" #repassword required></ion-input>
+      <ion-input formControlName="repassword" type="password" #repassword required></ion-input>
     </div>
-    <ion-button class="btn-Signup" type="submit" color="03A87C" (click)="signUp(email, password)">Sign Up</ion-button>
+    <ion-button class="btn-Signup" type="submit" color="03A87C"
+      [disabled]="!registrationForm.valid&&!checkPasswordAndRePasswordIsSame(password, repassword)"
+      (click)="signUp(email, password)">Sign Up</ion-button>
   </form>
 
   <div class="withlog">
