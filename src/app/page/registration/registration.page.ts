@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../shared/authentication.service';
 
@@ -11,11 +13,22 @@ import { ToastService } from '../../shared/toast.service';
 })
 export class RegistrationPage implements OnInit {
 
+  registrationForm: FormGroup;
+  emailInput: string;
+  passInput: string;
+  userInput: string;
+
   constructor(
     public authService: AuthenticationService,
     public router: Router,
     public toastService: ToastService
-  ) { }
+  ) {
+    this.registrationForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(4)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      repassword: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
+  }
 
   ngOnInit() {
   }
@@ -27,6 +40,14 @@ export class RegistrationPage implements OnInit {
       })).catch(error => {
         this.toastService.presentToast(error.message);
       });
+  }
+
+  checkPasswordAndRePasswordIsSame(password, repassword) {
+    if (password !== repassword) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   async successHandleSignUp(): Promise<void> {
