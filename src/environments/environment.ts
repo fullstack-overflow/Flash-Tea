@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyD88bxeAEKD3BCWTydtCv5fG0MN3CtYyu0',
+    authDomain: 'flash-tea.firebaseapp.com',
+    databaseURL: 'https://flash-tea.firebaseio.com',
+    projectId: 'flash-tea',
+    storageBucket: 'flash-tea.appspot.com',
+    messagingSenderId: '778481634036',
+    appId: '1:778481634036:web:a8bf7add4195cbe5beaca1',
+    measurementId: 'G-R6JCFT8YQ3'
+  }
 };
 
 /*
