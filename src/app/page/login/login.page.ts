@@ -44,4 +44,8 @@ export class LoginPage implements OnInit {
     await this.authService.signInWithFacebook();
     await this.toastService.presentToast(this.authService.messageAuthentication);
   }
+
+  navigateRegister() {
+    this.router.navigate(['registration']);
+  }
 }

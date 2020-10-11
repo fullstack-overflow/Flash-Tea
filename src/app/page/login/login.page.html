@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -45,3 +45,30 @@
 
   </form>
 </ion-content>
+ -->
+
+<div id="container">
+  <h1>Log In</h1>
+  <form class="form">
+    <div>
+      <p class="label">Email <a>*</a></p> <br />
+      <ion-input type="email" #email required></ion-input>
+    </div>
+    <div>
+      <p class="label">Password <a>*</a></p> <br />
+      <ion-input type="password" #password required></ion-input>
+    </div>
+    <p class="forgot">Forgot your password?</p>
+    <ion-button class="btn-login" type="submit" color="03A87C" (click)="logIn(email, password)">Log In</ion-button>
+  </form>
+  <div class="withlog">
+    <p>Quick log in with</p>
+    <ion-button class="btn" (click)="logInWithFacebook()">Log In with Facebook</ion-button>
+    <ion-button class="btn" color="#181A1F" style="background-color: #181A1F ;" (click)="logInWithGoogle()">Log In with
+      Google</ion-button>
+  </div>
+  <div class="btn-control" style="position:fixed; right: 0; bottom: 0;">
+    <button (click)="navigateRegister()">Sign Up</button>
+    <button class="active">Log In</button>
+  </div>
+</div>

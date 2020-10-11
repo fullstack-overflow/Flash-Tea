@@ -35,11 +35,7 @@ export class RegistrationPage implements OnInit {
     await this.toastService.presentToast('Please check your email for success registration');
   }
 
-  // async presentToast(message: string): Promise<void> {
-  //   const toast = await this.toastController.create({
-  //     message,
-  //     duration: 2000
-  //   });
-  //   toast.present();
-  // }
+  navigateLogin() {
+    this.router.navigate(['login']);
+  }
 }

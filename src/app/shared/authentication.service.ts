@@ -110,6 +110,16 @@ export class AuthenticationService {
     });
   }
 
+  getDataFromCurrentUser() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log(user);
+      } else {
+        console.log(user);
+      }
+    });
+  }
+
   signOut() {
     return this.ngFireAuth.signOut().then(() => {
       this.messageAuthentication = 'Log out successfull! ^^';
