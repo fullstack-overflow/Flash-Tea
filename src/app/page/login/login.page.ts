@@ -35,7 +35,13 @@ export class LoginPage implements OnInit {
       });
   }
 
-  logInWithGoogle() {
-    this.authService.signInWithGoogle();
+  async logInWithGoogle() {
+    await this.authService.signInWithGoogle();
+    await this.toastService.presentToast(this.authService.messageAuthentication);
+  }
+
+  async logInWithFacebook() {
+    await this.authService.signInWithFacebook();
+    await this.toastService.presentToast(this.authService.messageAuthentication);
   }
 }
