@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../shared/authentication.service';
 
-import { ToastController } from '@ionic/angular';
+import { ToastService } from '../../shared/toast.service';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +14,7 @@ export class RegistrationPage implements OnInit {
   constructor(
     public authService: AuthenticationService,
     public router: Router,
-    public toastController: ToastController
+    public toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -25,20 +25,21 @@ export class RegistrationPage implements OnInit {
       .then((res => {
         this.successHandleSignUp();
       })).catch(error => {
-        this.presentToast(error.message);
+        this.toastService.presentToast(error.message);
       });
   }
 
   async successHandleSignUp(): Promise<void> {
     await this.authService.sendVerificationEmail();
     await this.router.navigate(['verify-email']);
+    await this.toastService.presentToast('Please check your email for success registration');
   }
 
-  async presentToast(message: string): Promise<void> {
-    const toast = await this.toastController.create({
-      message,
-      duration: 2000
-    });
-    toast.present();
-  }
+  // async presentToast(message: string): Promise<void> {
+  //   const toast = await this.toastController.create({
+  //     message,
+  //     duration: 2000
+  //   });
+  //   toast.present();
+  // }
 }
