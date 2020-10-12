@@ -45,11 +45,12 @@ export class AuthenticationService {
   }
 
   // forgot password?
-  passwordRecoverWithLink(passwordResetEmail) {
-    return firebase.auth().sendPasswordResetEmail(passwordResetEmail)
+  passwordRecoverWithLink(email) {
+    return firebase.auth().sendPasswordResetEmail(email)
       .then(() => {
         this.messageAuthentication = 'Password reset email has been sent, please check your inbox! ^^';
       }).catch((error) => {
+        console.log(email);
         this.messageAuthentication = error;
       });
   }
