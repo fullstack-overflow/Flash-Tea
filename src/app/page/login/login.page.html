@@ -58,7 +58,7 @@
       <p class="label">Password <a>*</a></p> <br />
       <ion-input type="password" #password required></ion-input>
     </div>
-    <p class="forgot">Forgot your password?</p>
+    <p class="forgot" (click)="navigateToForgotPassword()">Forgot your password?</p>
     <ion-button class="btn-login" type="submit" color="03A87C" (click)="logIn(email, password)">Log In</ion-button>
   </form>
   <div class="withlog">
@@ -68,7 +68,7 @@
       Google</ion-button>
   </div>
   <div class="btn-control" style="position:fixed; right: 0; bottom: 0;">
-    <button (click)="navigateRegister()">Sign Up</button>
+    <button (click)="navigateToRegister()">Sign Up</button>
     <button class="active">Log In</button>
   </div>
 </div>

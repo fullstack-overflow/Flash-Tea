@@ -45,7 +45,11 @@ export class LoginPage implements OnInit {
     await this.toastService.presentToast(this.authService.messageAuthentication);
   }
 
-  navigateRegister() {
+  navigateToRegister() {
     this.router.navigate(['registration']);
+  }
+
+  navigateToForgotPassword() {
+    this.router.navigate(['forgot-password']);
   }
 }

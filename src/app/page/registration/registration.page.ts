@@ -16,7 +16,7 @@ export class RegistrationPage implements OnInit {
   registrationForm: FormGroup;
   emailInput: string;
   passInput: string;
-  userInput: string;
+  rePassInput: string;
 
   constructor(
     public authService: AuthenticationService,
@@ -52,8 +52,19 @@ export class RegistrationPage implements OnInit {
 
   async successHandleSignUp(): Promise<void> {
     await this.authService.sendVerificationEmail();
+    await this.registrationForm.reset();
     await this.router.navigate(['verify-email']);
     await this.toastService.presentToast('Please check your email for success registration');
+  }
+
+  async logInWithGoogle() {
+    await this.authService.signInWithGoogle();
+    await this.toastService.presentToast(this.authService.messageAuthentication);
+  }
+
+  async logInWithFacebook() {
+    await this.authService.signInWithFacebook();
+    await this.toastService.presentToast(this.authService.messageAuthentication);
   }
 
   navigateLogin() {
