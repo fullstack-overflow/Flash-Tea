@@ -15,42 +15,41 @@ interface ItemArray {
 export class HomePage implements OnInit {
   public items: ItemArray[] = [
     {
-      // img: '../../../assets/items/milktea.png',
-      img: '../../../assets/items/MilkTea.png',
+      img: '../../../assets/items/BlueSky.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000',
     },
     {
-      img: '../../../assets/items/MilkTea.png',
+      img: '../../../assets/items/milktea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
     {
-      img: '../../../assets/items/MilkTea.png',
+      img: '../../../assets/items/milktea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
     {
-      img: '../../../assets/items/MilkTea.png',
+      img: '../../../assets/items/milktea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
     {
-      img: '../../../assets/items/MilkTea.png',
+      img: '../../../assets/items/milktea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
     {
-      img: '../../../assets/items/MilkTea.png',
+      img: '../../../assets/items/milktea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
-    },
+    }
   ];
 
   constructor() { }

@@ -1,43 +1,48 @@
 <ion-content fullscreen>
-  <div class="header">
-    <div class="icon"></div>
-    <div class="search">
-      <input type="text" placeholder="Search...">
-      <div class="icon-search"></div>
+  <div class="fixed">
+    <div class="header">
+      <div class="icon"></div>
+      <div class="search">
+        <input type="text" placeholder="Search...">
+        <div class="icon-search"></div>
+      </div>
+      <div class="icon-cart"></div>
     </div>
-    <div class="icon-cart"></div>
-  </div>
-  <div class="location">
-    <div class="icon-location"></div>
-    <h1>1 Đường P.Đ Thiên Vương, P8, TP.Đà Lạt</h1>
-    <div class="icon-go"></div>
-  </div>
-  <div>
-    <div class="hot-items">
-      <p> Hot </p>
-      <div class="two">
-        <ng-container *ngFor="let item of items">
-          <div class="item">
-            <div class="imgItem"><img src={{item.img}} alt=""></div>
-            <h2>{{item.name}}</h2>
-            <div class="price">
-              <div class="price-item">
-                <p id="price-real">{{item.real}} vnđ</p>
-                <p id="price-sale">{{item.sale}} vnđ</p>
-              </div>
-              <div class="icon-addtocard" (click)="add()"></div>
-            </div>
-          </div>
-        </ng-container>
+    <div class="location">
+      <div class="icon-location"></div>
+      <h1>1 Đường P.Đ Thiên Vương, P8, TP.Đà Lạt</h1>
+      <div>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
       </div>
     </div>
+  </div>
 
-    <div class="hot-items">
-      <p> Sale </p>
+
+  <ion-grid fixed class="hot-items list-items">
+    <p>Hot</p>
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-xs="6" size-md="4" size-lg="3" *ngFor="let item of items">
+        <div class="item">
+          <div class="imgItem"><img src={{item.img}} alt="" class="img-fix"></div>
+          <h2>{{item.name}}</h2>
+          <div class="price">
+            <div class="price-item">
+              <p id="price-real">{{item.real}} vnđ</p>
+              <p id="price-sale">{{item.sale}} vnđ</p>
+            </div>
+            <div class="icon-addtocard" (click)="add()"></div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <!-- <div class="hot-items">
+    <p> Hot </p>
       <div class="two">
         <ng-container *ngFor="let item of items">
           <div class="item">
-            <div class="imgItem"><img src={{item.img}} alt=""></div>
+            <div class="imgItem"><img src= {{item.img}} alt=""></div>
             <h2>{{item.name}}</h2>
             <div class="price">
               <div class="price-item">
@@ -49,6 +54,5 @@
           </div>
         </ng-container>
       </div>
-    </div>
-  </div>
+  </div>   -->
 </ion-content>
