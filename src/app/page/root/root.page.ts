@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { AuthenticationService } from '../../shared/authentication.service';
-
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -11,21 +9,9 @@ import * as firebase from 'firebase';
 })
 export class RootPage implements OnInit {
 
-  isLoogedIn: object | null;
-  constructor(public authService: AuthenticationService) { }
+  constructor(
+    public authService: AuthenticationService
+  ) { }
 
-  ngOnInit() {
-    this.isLoogedIn = firebase.auth().currentUser;
-  }
-
-  checkUserLoggedForNavigate() {
-    if (this.isLoogedIn === null) {
-      return false;
-    } else { return true; }
-    // if (this.isLoogedIn === false) {
-    //   return false;
-    // } else {
-    //   return true;
-    // }
-  }
+  ngOnInit() { }
 }
