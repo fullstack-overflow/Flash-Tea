@@ -1,20 +1,54 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Flash Tea
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen>
+  <div class="header">
+    <div class="icon"></div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <div class="icon-search"></div>
+    </div>
+    <div class="icon-cart"></div>
+  </div>
+  <div class="location">
+    <div class="icon-location"></div>
+    <h1>1 Đường P.Đ Thiên Vương, P8, TP.Đà Lạt</h1>
+    <div class="icon-go"></div>
+  </div>
+  <div>
+    <div class="hot-items">
+      <p> Hot </p>
+      <div class="two">
+        <ng-container *ngFor="let item of items">
+          <div class="item">
+            <div class="imgItem"><img src={{item.img}} alt=""></div>
+            <h2>{{item.name}}</h2>
+            <div class="price">
+              <div class="price-item">
+                <p id="price-real">{{item.real}} vnđ</p>
+                <p id="price-sale">{{item.sale}} vnđ</p>
+              </div>
+              <div class="icon-addtocard" (click)="add()"></div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
 
-<ion-content class="auth-form">
-  <ion-grid>
-    <ion-row>
-      <ion-col class="ion-align-self-center">
-        <ion-button [routerLink]="['/registration']" expand="block" color="primary">Register</ion-button>
-        <span class="divider line one-line">or</span>
-        <span class="already">Already a user?</span>
-        <ion-button [routerLink]="['/login']" expand="block" color="danger">Sign In</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <div class="hot-items">
+      <p> Sale </p>
+      <div class="two">
+        <ng-container *ngFor="let item of items">
+          <div class="item">
+            <div class="imgItem"><img src={{item.img}} alt=""></div>
+            <h2>{{item.name}}</h2>
+            <div class="price">
+              <div class="price-item">
+                <p id="price-real">{{item.real}} vnđ</p>
+                <p id="price-sale">{{item.sale}} vnđ</p>
+              </div>
+              <div class="icon-addtocard" (click)="add()"></div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </ion-content>
