@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'root',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    loadChildren: () => import('./page/root/root.module').then(m => m.RootPageModule)
   },
   {
     path: 'registration',
@@ -30,6 +34,18 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./page/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'all-list',
+    loadChildren: () => import('./page/all-list/all-list.module').then(m => m.AllListPageModule)
+  },
+  {
+    path: 'info-user',
+    loadChildren: () => import('./page/info-user/info-user.module').then(m => m.InfoUserPageModule)
+  },
+  {
+    path: 'root',
+    loadChildren: () => import('./page/root/root.module').then(m => m.RootPageModule)
   },
 ];
 
