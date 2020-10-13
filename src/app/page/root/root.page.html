@@ -8,8 +8,14 @@
       <ion-icon class="icon-list"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="info-user">
+    <ion-tab-button tab="info-user" *ngIf="checkUserLoggedForNavigate(); else showThis">
       <ion-icon class="icon-heart"></ion-icon>
     </ion-tab-button>
+
+    <ng-template #showThis>
+      <ion-tab-button href="/login">
+        <ion-icon class="icon-heart"></ion-icon>
+      </ion-tab-button>
+    </ng-template>
   </ion-tab-bar>
 </ion-tabs>

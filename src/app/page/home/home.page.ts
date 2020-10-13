@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthenticationService } from '../../shared/authentication.service';
-
 interface ItemArray {
   img: string;
   name: string;
@@ -17,46 +15,47 @@ interface ItemArray {
 export class HomePage implements OnInit {
   public items: ItemArray[] = [
     {
-      img: '../../assets/items/milktea.png',
+      // img: '../../../assets/items/milktea.png',
+      img: '../../../assets/items/MilkTea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000',
     },
     {
-      img: '../../assets/items/milktea.png',
+      img: '../../../assets/items/MilkTea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
     {
-      img: '../../assets/items/milktea.png',
+      img: '../../../assets/items/MilkTea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
     {
-      img: '../../assets/items/milktea.png',
+      img: '../../../assets/items/MilkTea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
     {
-      img: '../../assets/items/milktea.png',
+      img: '../../../assets/items/MilkTea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
     {
-      img: '../../assets/items/milktea.png',
+      img: '../../../assets/items/MilkTea.png',
       name: 'Trà sữa trân châu đường đen',
       real: '45 000',
       sale: '30 000'
     },
   ];
 
-  constructor(public authService: AuthenticationService) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log(this.authService.getDataFromCurrentUser());
+
   }
 }

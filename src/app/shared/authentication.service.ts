@@ -87,7 +87,7 @@ export class AuthenticationService {
     return this.ngFireAuth.signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['root/info-user']);
           this.messageAuthentication = 'Welcome to Flash Tea! ^^';
         });
         this.setUserData(result.user);
@@ -96,7 +96,7 @@ export class AuthenticationService {
       });
   }
 
-  // store user in localStorage
+  // store user localStorage to cloud database
   setUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`users/${user.uid}`);
     const userData: User = {
@@ -125,7 +125,7 @@ export class AuthenticationService {
     return this.ngFireAuth.signOut().then(() => {
       this.messageAuthentication = 'Log out successfull! ^^';
       localStorage.removeItem('user');
-      this.router.navigate(['login']);
+      this.router.navigate(['root/home']);
     });
   }
 }

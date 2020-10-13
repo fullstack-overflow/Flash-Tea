@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthenticationService } from '../../shared/authentication.service';
+
+import { ToastService } from '../../shared/toast.service';
+
 @Component({
   selector: 'app-info-user',
   templateUrl: './info-user.page.html',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoUserPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public authService: AuthenticationService,
+    public toastServide: ToastService
+  ) { }
 
   ngOnInit() {
   }
 
+  logOut() {
+    this.authService.signOut();
+  }
 }
