@@ -89,7 +89,7 @@ export class AuthenticationService {
     return this.ngFireAuth.signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['root/info-user']);
+          this.router.navigate(['root/home']);
           this.messageAuthentication = 'Welcome to Flash Tea! ^^';
         });
         this.setUserData(result.user);

@@ -1,0 +1,37 @@
+<ion-content fullscreen>
+  <div class="header">
+    <div class="icon"></div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <div class="icon-search"></div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="content">
+      <h1>Flash Tea</h1>
+      <div class="row">
+        <p>Địa chỉ: P8 - Dalat City</p><button class="icongo"></button>
+      </div>
+      <div class="row">
+        <p>Email: FlashTea@gmail.com</p><button class="icongo"></button>
+      </div>
+      <div class="row">
+        <p>Số điện thoại: 0xxxxxxxx0</p><button class="icongo"></button>
+      </div>
+    </div>
+    <img class="img-user" src="../../../assets/items/Drink&tea.jpg" />
+
+    <div class="control">
+      <ion-button class="btn-bill" expand="block" fill="clear" shape="round">
+        Quản lý đơn hàng
+      </ion-button>
+      <ion-button class="btn" expand="block" fill="clear" shape="round">
+        Thêm sản phẩm
+      </ion-button>
+      <ion-button class="btn" (click)="logOut()" expand="block" fill="clear" shape="round">
+        Đăng xuất
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

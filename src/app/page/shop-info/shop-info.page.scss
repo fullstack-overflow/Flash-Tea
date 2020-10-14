@@ -1,0 +1,144 @@
+.header {
+  width: 100%;
+  margin: 7% 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+    margin-left: 4%;
+    width: 20px;
+    height: 25px;
+    background: url('../../../assets/icon/back.png') no-repeat;
+  }
+
+  .search {
+    margin: 0 7% 0 5%;
+    width: 70%;
+    height: 30px;
+    border: 1px solid #66696E;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+
+    input {
+      font-size: 14px;
+      padding-left: 10px;
+      width: 100% - 20%;
+      border: none;
+      outline: none;
+    }
+
+    .icon-search {
+      margin: 8px;
+      float: right;
+      width: 14px;
+      height: 14px;
+      background-image: url('../../../assets/icon/iconsearch.png');
+    }
+  }
+}
+
+.item {
+  width: 90%;
+  margin: 5% 0 0 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .img-user {
+    position: absolute;
+    outline: none;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    background-color: #66696E;
+  }
+
+  .content {
+    margin-top: 130px;
+    width: 100%;
+    height: max-content;
+    filter: drop-shadow(0px 0px 35px rgba(0, 0, 0, 0.25));
+    background: #FFFFFF;
+    border: 0.2px solid #f0f1f5;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      font-weight: bold;
+      margin: 106px 0 60px 0;
+      font-size: 30px;
+      line-height: 38px;
+      color: #03A87C;
+    }
+
+    .row {
+      width: 100%;
+      height: 45px;
+      border-top: 1px solid #ebedf1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      p {
+        float: left;
+        width: 90%;
+        margin-left: 5%;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 19px;
+        color: #66696E;
+      }
+
+      .icongo {
+        border: none;
+        outline: none;
+        float: right;
+        width: 20px;
+        height: 20px;
+        background: url('../../../assets/icon/icon-go.svg') no-repeat;
+      }
+    }
+  }
+
+  .control {
+    margin: 50px 0 30px 0;
+    width: 100%;
+
+    .btn {
+      width: 100%;
+      height: 40px;
+      margin-top: 10px;
+      background: #03A87C;
+      box-shadow: 0px 10px 3px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 23px;
+    }
+
+    .btn-bill {
+      width: 100%;
+      height: 40px;
+      margin-top: 10px;
+      background: #DEC369;
+      filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25));
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+
+}

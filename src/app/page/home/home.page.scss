@@ -14,10 +14,10 @@
   }
 
   .search {
-    margin: 0 4% 0 4%;
+    margin: 0 2% 0 2%;
     width: 50%;
     height: 30px;
-    border: 1px solid #66696E;
+    border: 1px solid #a4a4a5;
     border-radius: 8px;
     justify-content: center;
     align-items: center;
@@ -55,13 +55,14 @@
 .location {
   margin-top: 10px;
   width: 100%;
-  height: 55px;
+  height: 50px;
   filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
   background: #FFFFFF;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   .icon-location {
 
@@ -73,9 +74,10 @@
 
   h1 {
     margin: 0 15px 0 15px;
+    width: 70%;
     font-style: normal;
     font-weight: bold;
-    font-size: 4vw;
+    font-size: 3.5vw;
     line-height: 25px;
     color: #66696E;
   }
@@ -97,85 +99,89 @@
   flex-direction: column;
 
   p {
-    margin: 2% 0 0.5rem 2rem;
+    margin: 0 0 0 2rem;
     float: left;
     font-weight: bold;
-    font-size: 23px;
+    font-size: 20px;
     line-height: 25px;
-    color: #66696E;
+    color: #03A87C;
   }
 
-
-  .item {
-    width: 90%;
-    height: auto;
-    border-radius: 8px;
-    margin: 11px 6px 0 6px;
-    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
-    background: #FFFFFF;
+  ion-col {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 
-    .imgItem {
-      margin: 5% 5% 0 5%;
-      width: 90%;
+    .item {
+      width: 100%;
       border-radius: 8px;
-
-      .img-fix {
-        width: 100%;
-        object-fit: cover;
-        height: 150px;
-      }
-    }
-
-    h2 {
-      margin: 8px 15px 0 15px;
-      font-weight: bold;
-      font-size: 12.5px;
-      line-height: 16px;
-      color: #404A5A;
-    }
-
-    .price {
+      margin: 5px 1% 0 6px;
+      filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
+      background: #FFFFFF;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding-left: 3px;
 
-      .price-item {
-        float: left;
-        width: 65%;
+      .imgItem {
+        border-radius: 4px;
+        margin: 5px 5px 0 5px;
+        // width: 120;
+        height: 30vw;
+        border-radius: 8px;
 
-        #price-real {
-          margin: 19px 0 0 10px;
-          font-weight: bold;
-          text-decoration: line-through;
-          font-size: 10px;
-          line-height: 12px;
-          color: #ADADAD;
-        }
-
-        #price-sale {
-          margin: 4px 0 12px 10px;
-          font-weight: bold;
-          font-size: 13px;
-          line-height: 16px;
-          color: #404A5A;
+        .img-fix {
+          height: 100%;
+          object-fit: cover;
         }
       }
 
-      .icon-addtocard {
-        margin: 0 0 0 0;
-        width: 35px;
-        height: 35px;
-        background: url('../../../assets/icon/icon-add-to-cart.svg') no-repeat;
-        background-size: cover;
+      h2 {
+        margin: 10px 15px 0 15px;
+        font-weight: bold;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #404A5A;
+      }
+
+      .price {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-left: 3px;
+
+        .price-item {
+          float: left;
+          width: 65%;
+
+          #price-real {
+            margin: 15px 0 0 10px;
+            font-weight: bold;
+            text-decoration: line-through;
+            font-size: 10px;
+            line-height: 12px;
+            color: #ADADAD;
+          }
+
+          #price-sale {
+            margin: 4px 0 12px 10px;
+            font-weight: bold;
+            font-size: 13px;
+            line-height: 16px;
+            color: #404A5A;
+          }
+        }
+
+        .icon-addtocard {
+          margin: 5px 0 0 0;
+          width: 30px;
+          height: 30px;
+          background: url('../../../assets/icon/icon-add-to-cart.svg') no-repeat;
+          background-size: cover;
+        }
       }
     }
-  }
 
+  }
 }
 
 .fixed {
@@ -186,5 +192,5 @@
 }
 
 .list-items {
-  margin-top: 130px;
+  margin-top: 37%;
 }
