@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from './user';
+import { StoreAccount } from './storeAccount';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -93,6 +94,7 @@ export class AuthenticationService {
           this.messageAuthentication = 'Welcome to Flash Tea! ^^';
         });
         this.setUserData(result.user);
+        console.log('this user', result.user);
       }).catch(error => {
         this.messageAuthentication = error;
       });
@@ -109,6 +111,21 @@ export class AuthenticationService {
       emailVerified: user.emailVerified
     };
     return userRef.set(userData, {
+      merge: true
+    });
+  }
+
+  // store shop account to cloude database
+  setShopAccountData(shop) {
+    const shopRef: AngularFirestoreDocument<any> = this.afStore.doc(`shops/${shop.uid}`);
+    const shopData: StoreAccount = {
+      uid: shop.uid,
+      email: shop.email,
+      displayName: shop.displayName,
+      photoURL: shop.photoURL,
+      emailVerified: shop.emailVerified
+    };
+    return shopRef.set(shopData, {
       merge: true
     });
   }
