@@ -9,59 +9,13 @@ interface ItemArray {
   sale: number;
 }
 
-interface ItemArray2 {
-  name: string;
-  img: string;
-  real: string;
-  sale: string;
-}
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  itemList: ItemArray[] = [];
-
-  public items: ItemArray2[] = [
-    {
-      img: '../../../assets/items/BlueSky.png',
-      name: 'Trà sữa trân châu đường đen',
-      real: '45 000',
-      sale: '30 000',
-    },
-    {
-      img: '../../../assets/items/milktea.png',
-      name: 'Trà sữa trân châu đường đen',
-      real: '45 000',
-      sale: '30 000'
-    },
-    {
-      img: '../../../assets/items/milktea.png',
-      name: 'Trà sữa trân châu đường đen',
-      real: '45 000',
-      sale: '30 000'
-    },
-    {
-      img: '../../../assets/items/milktea.png',
-      name: 'Trà sữa trân châu đường đen',
-      real: '45 000',
-      sale: '30 000'
-    },
-    {
-      img: '../../../assets/items/milktea.png',
-      name: 'Trà sữa trân châu đường đen',
-      real: '45 000',
-      sale: '30 000'
-    },
-    {
-      img: '../../../assets/items/milktea.png',
-      name: 'Trà sữa trân châu đường đen',
-      real: '45 000',
-      sale: '30 000'
-    }
-  ];
+  items: ItemArray[] = [];
 
   constructor(
     private crudService: CrudService
@@ -69,21 +23,19 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.crudService.getItemsFromFirebaseCloud().subscribe(data => {
-      // this.itemList = data.map(e => {
-      //   return {
-      //     // id: e.payload.doc.id,
-      //     // isEdit: false,
-      //     // name: e.payload.doc.data().name,
-      //     // price: e.payload.doc.data().price,
-      //     // sale: e.payload.doc.data().Address,
-      //     // img: e.payload.doc.data().img
-      //   };
-      // });
-      data.map(e => {
-        console.log(e.payload.doc.data().img);
+      this.items = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          // tslint:disable-next-line:no-string-literal
+          name: e.payload.doc.data()['name'],
+          // tslint:disable-next-line:no-string-literal
+          price: e.payload.doc.data()['price'],
+          // tslint:disable-next-line:no-string-literal
+          sale: e.payload.doc.data()['sale'],
+          // tslint:disable-next-line:no-string-literal
+          img: e.payload.doc.data()['img']
+        };
       });
-      console.log(this.itemList);
-      console.log(data);
     });
   }
 }
