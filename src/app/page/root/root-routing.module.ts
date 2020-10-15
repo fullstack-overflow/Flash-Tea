@@ -20,8 +20,11 @@ const routes: Routes = [
         path: 'info-user',
         loadChildren: () => import('../info-user/info-user.module')
           .then(m => m.InfoUserPageModule)
-      },
-      {
+      }, {
+        path: 'shop-info',
+        loadChildren: () => import('../shop-info/shop-info.module')
+          .then(m => m.ShopInfoPageModule)
+      }, {
         path: '',
         redirectTo: '/root/home',
         pathMatch: 'full'

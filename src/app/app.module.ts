@@ -17,6 +17,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ToastService } from './shared/toast.service';
 
+import { CrudService } from './shared/crud.service';
+
+import { AdminListService } from './shared/admin-list.service';
+
 import { AuthenticationService } from './shared/authentication.service';
 
 @NgModule({
@@ -37,6 +41,8 @@ import { AuthenticationService } from './shared/authentication.service';
     AngularFirestoreModule,
     ToastService,
     AuthenticationService,
+    AdminListService,
+    CrudService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
