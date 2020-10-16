@@ -18,8 +18,8 @@
 
     <div>
       <p class="label">Upload Image <a>*</a></p> <br />
-      <input formControlName="uploadimage" type="file" #repassword name="image" id="image" class="fileInput"
-        accept="image/*" required />
+      <input formControlName="uploadimage" (change)="changeImage()" type="file" #image name="image" id="image"
+        class="fileInput" accept="image/*" required />
     </div>
 
     <p class="admin-register" (click)="navigateUserRegister()">Create a user account?</p>
