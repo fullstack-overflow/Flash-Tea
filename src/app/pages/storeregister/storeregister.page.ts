@@ -6,17 +6,22 @@ import { AuthenticationService } from '../../shared/authentication.service';
 
 import { ToastService } from '../../shared/toast.service';
 
+import { StoreAccount } from '../../shared/storeAccount';
+
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.page.html',
-  styleUrls: ['./registration.page.scss'],
+  selector: 'app-storeregister',
+  templateUrl: './storeregister.page.html',
+  styleUrls: ['./storeregister.page.scss'],
 })
-export class RegistrationPage implements OnInit {
+export class StoreregisterPage implements OnInit {
 
   registrationForm: FormGroup;
   emailInput: string;
   passInput: string;
   rePassInput: string;
+  uploadimage: string;
+  displayName: string;
+  shopAccountData: StoreAccount[];
 
   constructor(
     public authService: AuthenticationService,
@@ -26,7 +31,8 @@ export class RegistrationPage implements OnInit {
     this.registrationForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      repassword: new FormControl('', [Validators.required, Validators.minLength(6)])
+      repassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      uploadimage: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
   }
 
@@ -36,10 +42,19 @@ export class RegistrationPage implements OnInit {
   signUp(email, password) {
     this.authService.registerWithEmailAndPassword(email.value, password.value)
       .then((res => {
+        // firebase.auth().currentUser.set
         this.successHandleSignUp();
+        this.authService.setShopAccountData(res.user);
       })).catch(error => {
         this.toastService.presentToast(error.message);
       });
+  }
+
+  async successHandleSignUp(): Promise<void> {
+    await this.authService.sendVerificationEmail();
+    await this.registrationForm.reset();
+    await this.router.navigate(['verify-email']);
+    await this.toastService.presentToast('Please check your email for success registration');
   }
 
   checkPasswordAndRePasswordIsSame(password, repassword) {
@@ -50,28 +65,12 @@ export class RegistrationPage implements OnInit {
     }
   }
 
-  async successHandleSignUp(): Promise<void> {
-    await this.authService.sendVerificationEmail();
-    await this.registrationForm.reset();
-    await this.router.navigate(['verify-email']);
-    await this.toastService.presentToast('Please check your email for success registration');
-  }
-
-  async logInWithGoogle() {
-    await this.authService.signInWithGoogle();
-    await this.toastService.presentToast(this.authService.messageAuthentication);
-  }
-
-  async logInWithFacebook() {
-    await this.authService.signInWithFacebook();
-    await this.toastService.presentToast(this.authService.messageAuthentication);
-  }
-
   navigateLogin() {
     this.router.navigate(['login']);
   }
 
-  navigateToBussinessRegister() {
-    this.router.navigate(['storeregister']);
+  navigateUserRegister() {
+    this.router.navigate(['registration']);
   }
+
 }

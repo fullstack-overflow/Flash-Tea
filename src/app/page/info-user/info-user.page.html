@@ -13,5 +13,7 @@
     <ion-row>
       <ion-button type="submit" (click)="logOut()" expand="block">Logout</ion-button>
     </ion-row>
+    <input formControlName="uploadimage" type="file" #uploadimage name="image" id="image" class="fileInput"
+      accept="image/*" (click)="uploadImage()" required />
   </ion-grid>
 </ion-content>
