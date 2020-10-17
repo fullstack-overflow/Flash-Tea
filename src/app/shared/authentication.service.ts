@@ -26,6 +26,7 @@ export class AuthenticationService {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
+
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));

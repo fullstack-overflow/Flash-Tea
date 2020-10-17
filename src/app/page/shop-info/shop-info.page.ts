@@ -7,6 +7,8 @@ import { AuthenticationService } from '../../shared/authentication.service';
 import { ToastService } from '../../shared/toast.service';
 
 import * as firebase from 'firebase';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-shop-info',
@@ -22,7 +24,9 @@ export class ShopInfoPage implements OnInit {
   constructor(
     public authService: AuthenticationService,
     public toastServide: ToastService,
-    public router: Router
+    public router: Router,
+    public afStore: AngularFirestore,
+    public ngFireAuth: AngularFireAuth,
   ) { }
 
   ngOnInit() {
@@ -31,6 +35,16 @@ export class ShopInfoPage implements OnInit {
     this.displayName = getShopAccount.displayName;
     this.email = getShopAccount.email;
     this.photoURL = getShopAccount.photoURL;
+
+    if (getShopAccount.emailVerified === true) {
+      const shopRef: AngularFirestoreDocument<any> = this.afStore.doc(`shops/${getShopAccount.uid}`);
+      const shopData = {
+        emailVerified: true
+      };
+      return shopRef.set(shopData, {
+        merge: true
+      });
+    }
   }
 
   logOut() {
