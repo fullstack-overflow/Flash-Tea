@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { AuthenticationService } from '../../shared/authentication.service';
 
@@ -6,7 +6,6 @@ import { ToastService } from '../../shared/toast.service';
 
 import { AdminListService } from '../../shared/admin-list.service';
 
-import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,19 +27,21 @@ export class InfoUserPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    // if (firebase.auth().currentUser === null) {
-    //   return this.router.navigate(['login']);
-    // }
+    const getUser = JSON.parse(localStorage.getItem('user'));
+    const getadminList = JSON.parse(localStorage.getItem('shopsAccount'));
+    if (getUser === null) {
+      return this.router.navigate(['login']);
+    }
 
-    const emailFind = this.adminList.adminList.find(item => {
-      if (firebase.auth().currentUser === null) {
-        return this.router.navigate(['login']);
-      } else {
-        return item.email === firebase.auth().currentUser.email;
-      }
+    if (getUser.emailVerified === false) {
+      return this.router.navigate(['verify-email']);
+    }
+    console.log(getadminList);
+    const emailFind = getadminList.find(item => {
+      return item.email === getUser.email;
     });
 
-    if (emailFind !== undefined && firebase.auth().currentUser !== null) {
+    if (emailFind !== undefined && getUser !== null) {
       return this.router.navigate(['root/shop-info']);
     }
   }

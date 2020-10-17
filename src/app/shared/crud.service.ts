@@ -10,4 +10,8 @@ export class CrudService {
   getItemsFromFirebaseCloud() {
     return this.firestore.collection('items').snapshotChanges();
   }
+
+  getShopAccountFromFirebaseCloud() {
+    return this.firestore.collection('shops').snapshotChanges();
+  }
 }
