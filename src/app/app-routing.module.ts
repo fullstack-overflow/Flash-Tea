@@ -45,11 +45,15 @@ const routes: Routes = [
   },
   {
     path: 'shop-info',
-    loadChildren: () => import('./page/shop-info/shop-info.module').then( m => m.ShopInfoPageModule)
+    loadChildren: () => import('./page/shop-info/shop-info.module').then(m => m.ShopInfoPageModule)
   },
   {
     path: 'storeregister',
-    loadChildren: () => import('./pages/storeregister/storeregister.module').then( m => m.StoreregisterPageModule)
+    loadChildren: () => import('./page/storeregister/storeregister.module').then(m => m.StoreregisterPageModule)
+  },
+  {
+    path: 'add-item',
+    loadChildren: () => import('./page/add-item/add-item.module').then(m => m.AddItemPageModule)
   },
 ];
 

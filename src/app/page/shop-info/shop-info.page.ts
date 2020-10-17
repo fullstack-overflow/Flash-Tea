@@ -36,4 +36,8 @@ export class ShopInfoPage implements OnInit {
   logOut() {
     this.authService.signOut();
   }
+
+  addItem() {
+    this.router.navigate(['add-item']);
+  }
 }
