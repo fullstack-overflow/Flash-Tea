@@ -1,0 +1,123 @@
+.header {
+  width: 100%;
+  margin: 7% 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+    margin-left: 4%;
+    width: 20px;
+    height: 25px;
+    background: url('../../../assets/icon/back.png') no-repeat;
+  }
+
+  .search {
+    margin: 0 7% 0 5%;
+    width: 70%;
+    height: 30px;
+    border: 1px solid #66696E;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+
+    input {
+      font-size: 14px;
+      padding-left: 10px;
+      width: 100% - 20%;
+      border: none;
+      outline: none;
+    }
+
+    .icon-search {
+      margin: 8px;
+      float: right;
+      width: 14px;
+      height: 14px;
+      background-image: url('../../../assets/icon/iconsearch.png');
+    }
+  }
+}
+
+.new-item {
+  width: 90%;
+  height: 580px;
+  margin: 10% 0 0 5%;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+
+  p {
+    margin: 13px 0 0 5%;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+    color: #66696E;
+  }
+
+  .img {
+    margin-top: 5px;
+    width: 100%;
+    height: 190px;
+    display: flex;
+    background: #E1E1E1;
+    background-size: cover;
+  }
+
+  .row-short {
+    margin: 5px 0 0 5%;
+    width: 90%;
+    height: 40px;
+    background: #E1E1E1;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+
+
+    input {
+      width: 90%;
+      border: none;
+      outline: none;
+      background: none;
+    }
+  }
+
+  .row-long {
+    margin: 5px 0 0 5%;
+    width: 90%;
+    min-height: 150px;
+    background: #E1E1E1;
+    border-radius: 8px;
+
+    #a {
+      margin: 5px 0 20px 5%;
+      min-height: 120px;
+      width: 90%;
+      word-wrap: break-word;
+      border: none;
+      outline: none;
+      background: none;
+    }
+  }
+
+}
+
+.btn {
+  width: 90%;
+  height: 40px;
+  margin: 30px 0 30px 5%;
+  background: #03A87C;
+  box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  outline: none;
+  border: none;
+}

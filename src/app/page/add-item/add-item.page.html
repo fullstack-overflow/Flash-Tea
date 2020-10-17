@@ -1,0 +1,36 @@
+<ion-content fullscreen>
+  <div class="header">
+    <div class="icon"></div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <div class="icon-search"></div>
+    </div>
+  </div>
+  <div>
+    <form class="form" [formGroup]="addItemForm">
+      <div class="new-item">
+        <p>Ảnh sản phẩm:</p>
+        <div class="img">
+          <input formControlName="image" (change)="changeImage()" type="file" #image name="image" id="image"
+            class="fileInput" accept="image/*" required />
+        </div>
+        <p>Tên sản phẩm:</p>
+        <div class="row-short">
+          <ion-input formControlName="name" type="text" #name required></ion-input>
+        </div>
+        <p>Giá:</p>
+        <div class="row-short">
+          <ion-input formControlName="price" type="number" #price required></ion-input>
+        </div>
+        <p>Mô tả:</p>
+        <div class="row-long">
+          <ion-textarea formControlName="description" placeholder="Enter more description here..." name="description"
+            #description></ion-textarea>
+        </div>
+      </div>
+      <ion-button class="btn" type="submit" color="03A87C" expand="block" fill="clear" shape="round"
+        [disabled]="!addItemForm.valid" (click)="addMilkTea(name.value, price.value, description.value)">Thêm sản phẩm
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

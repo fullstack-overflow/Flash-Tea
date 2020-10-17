@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
           img: e.payload.doc.data()['img']
         };
       });
+      // tslint:disable-next-line:no-string-literal
     });
   }
 }
