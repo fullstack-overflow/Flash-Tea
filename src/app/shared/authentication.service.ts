@@ -116,12 +116,12 @@ export class AuthenticationService {
   }
 
   // store shop account to cloude database
-  setShopAccountData(shop, pathImage) {
+  setShopAccountData(shop, pathImage, teaname) {
     const shopRef: AngularFirestoreDocument<any> = this.afStore.doc(`shops/${shop.uid}`);
     const shopData: StoreAccount = {
       uid: shop.uid,
       email: shop.email,
-      displayName: shop.displayName,
+      displayName: teaname,
       photoURL: pathImage,
       emailVerified: shop.emailVerified
     };

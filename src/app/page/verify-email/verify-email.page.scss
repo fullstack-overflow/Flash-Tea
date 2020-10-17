@@ -1,0 +1,35 @@
+.notify {
+  margin: 40% 0 0 5%;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: center;
+  text-align: center;
+
+  h1 {
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    color: #66696E;
+  }
+
+  p {
+    margin-top: 40px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #5E656F;
+  }
+
+  ion-button {
+    margin-top: 130px;
+    height: 40px;
+    font-size: 14px;
+    color: white;
+    border-radius: 8px;
+    background-color: #03A87C;
+  }
+}

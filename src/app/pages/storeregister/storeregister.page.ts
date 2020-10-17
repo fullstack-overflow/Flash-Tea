@@ -10,6 +10,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-storeregister',
   templateUrl: './storeregister.page.html',
@@ -21,6 +23,7 @@ export class StoreregisterPage implements OnInit {
   emailInput: string;
   passInput: string;
   rePassInput: string;
+  teaNameInput: string;
   uploadimage: string;
   filePathImage: string;
   fileImage: any;
@@ -36,6 +39,7 @@ export class StoreregisterPage implements OnInit {
   ) {
     this.registrationForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(4)]),
+      teaname: new FormControl('', [Validators.required, Validators.minLength(5)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       repassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
       uploadimage: new FormControl('', [Validators.required, Validators.minLength(5)])
@@ -49,39 +53,41 @@ export class StoreregisterPage implements OnInit {
     this.authService.registerWithEmailAndPassword(email.value, password.value)
       .then((res => {
         // firebase.auth().currentUser.set
-        this.successHandleSignUp(res);
+        console.log(this.teaNameInput);
+        this.successHandleSignUp(res, this.teaNameInput);
         console.log(res);
       })).catch(error => {
         this.toastService.presentToast(error.message);
       });
   }
 
-  async successHandleSignUp(res): Promise<void> {
+  async successHandleSignUp(res, teaname): Promise<void> {
     await this.authService.sendVerificationEmail();
     await this.registrationForm.reset();
-    await this.uploadImage(res.user);
-    const result = await this.pathImageURL;
-    console.log(this.pathImageURL);
+    await this.uploadImage(res.user, teaname);
+    // const result = await this.pathImageURL;
+    // console.log(this.pathImageURL);
     await this.toastService.presentToast('Please check your email for success registration');
     await this.router.navigate(['verify-email']);
     // await this.authService.setShopAccountData(res.user, 'dosomething2jgkajgka');
   }
 
-  changeImage() {
-    this.fileImage = (document.getElementById('image') as HTMLInputElement).files[0];
-    console.log(typeof (this.fileImage));
-    this.filePathImage = this.fileImage.name;
-    console.log(this.filePathImage);
-    console.log(this.fileImage);
+  updateProfileShop(path, teaname): void {
+    firebase.auth().currentUser.updateProfile({
+      displayName: teaname,
+      photoURL: path
+    });
   }
 
-  async uploadImage(shopAccount) {
+  async uploadImage(shopAccount, teaname) {
     const ref = await this.afStorage.ref('upload/' + shopAccount.uid + '/' + this.filePathImage);
     await ref.put(this.fileImage).then(res => {
       // tslint:disable-next-line:no-shadowed-variable
       ref.getDownloadURL().subscribe(url => {
         shopAccount.imgURL = url;
-        this.authService.setShopAccountData(shopAccount, url);
+        console.log(teaname);
+        this.authService.setShopAccountData(shopAccount, url, teaname);
+        this.updateProfileShop(url, teaname);
       });
     }).catch(e => {
       console.log(e);
@@ -96,6 +102,14 @@ export class StoreregisterPage implements OnInit {
     }
   }
 
+  changeImage() {
+    this.fileImage = (document.getElementById('image') as HTMLInputElement).files[0];
+    console.log(typeof (this.fileImage));
+    this.filePathImage = this.fileImage.name;
+    console.log(this.filePathImage);
+    console.log(this.fileImage);
+  }
+
   navigateLogin() {
     this.router.navigate(['login']);
   }
@@ -103,5 +117,4 @@ export class StoreregisterPage implements OnInit {
   navigateUserRegister() {
     this.router.navigate(['registration']);
   }
-
 }
