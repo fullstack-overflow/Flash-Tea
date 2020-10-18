@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
   items: ItemArray[] = [];
 
   constructor(
-    private crudService: CrudService
+    private crudService: CrudService,
   ) { }
 
   ngOnInit() {

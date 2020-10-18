@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'info',
     loadChildren: () => import('./page/info/info.module').then( m => m.InfoPageModule)
   },
+  {
+    path: 'form-update',
+    loadChildren: () => import('./page/form-update/form-update.module').then( m => m.FormUpdatePageModule)
+  },
 ];
 
 @NgModule({
