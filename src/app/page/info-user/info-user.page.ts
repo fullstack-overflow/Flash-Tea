@@ -27,23 +27,23 @@ export class InfoUserPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    const getUser = JSON.parse(localStorage.getItem('user'));
-    const getadminList = JSON.parse(localStorage.getItem('shopsAccount'));
-    if (getUser === null) {
-      return this.router.navigate(['login']);
-    }
+    // const getUser = JSON.parse(localStorage.getItem('user'));
+    // const getadminList = JSON.parse(localStorage.getItem('shopsAccount'));
+    // if (getUser === null) {
+    //   return this.router.navigate(['login']);
+    // }
 
-    if (getUser.emailVerified === false) {
-      return this.router.navigate(['verify-email']);
-    }
-    console.log(getadminList);
-    const emailFind = getadminList.find(item => {
-      return item.email === getUser.email;
-    });
+    // if (getUser.emailVerified === false) {
+    //   return this.router.navigate(['verify-email']);
+    // }
+    // console.log(getadminList);
+    // const emailFind = getadminList.find(item => {
+    //   return item.email === getUser.email;
+    // });
 
-    if (emailFind !== undefined && getUser !== null) {
-      return this.router.navigate(['root/shop-info']);
-    }
+    // if (emailFind !== undefined && getUser !== null) {
+    //   return this.router.navigate(['root/shop-info']);
+    // }
   }
 
   logOut() {
