@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'storeregister',
     loadChildren: () => import('./pages/storeregister/storeregister.module').then( m => m.StoreregisterPageModule)
   },
+  {
+    path: 'info',
+    loadChildren: () => import('./page/info/info.module').then( m => m.InfoPageModule)
+  },
 ];
 
 @NgModule({

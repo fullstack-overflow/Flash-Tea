@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('../all-list/all-list.module')
           .then(m => m.AllListPageModule)
       }, {
+        path: 'info',
+        loadChildren: () => import('../info/info.module')
+          .then(m => m.InfoPageModule)
+      }, {
         path: 'info-user',
         loadChildren: () => import('../info-user/info-user.module')
           .then(m => m.InfoUserPageModule)

@@ -1,19 +1,37 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>info-user</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen>
+  <div class="header">
+    <div class="icon"></div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <div class="icon-search"></div>
+    </div>
+  </div>
 
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <h2>Hello, User</h2>
-    </ion-row>
+  <div class="item">
+    <div class="content">
+      <h1>Name User</h1>
+      <div class="row">
+        <p>Địa chỉ: P8 - Dalat City</p><button class="icongo" (click)="onClick()"></button>
+      </div>
+      <div class="row">
+        <p>Email: FlashTea@gmail.com</p><button class="icongo" (click)="onClick()"></button>
+      </div>
+      <div class="row">
+        <p>Số điện thoại: 0xxxxxxxx0</p><button class="icongo" (click)="onClick()"></button>
+      </div>
+      <div class="row">
+        <p>Address: Dalat City</p><button class="icongo" (click)="onClick()"></button>
+      </div>
+    </div>
+    <img class="img-user" src="../../../assets/items/Drink&tea.jpg" />
 
-    <ion-row>
-      <ion-button type="submit" (click)="logOut()" expand="block">Logout</ion-button>
-    </ion-row>
-    <!-- <input formControlName="uploadimage" type="file" #uploadimage name="image" id="image" class="fileInput"
-      accept="image/*" (click)="uploadImage()" required /> -->
-  </ion-grid>
+    <div class="control">
+      <ion-button class="btn-bill" (click)="onClick()" expand="block" fill="clear" shape="round">
+        Kiểm tra đơn hàng
+      </ion-button>
+      <ion-button class="btn" (click)="logOut()" expand="block" fill="clear" shape="round">
+        Đăng xuất
+      </ion-button>
+    </div>
+  </div>
 </ion-content>
