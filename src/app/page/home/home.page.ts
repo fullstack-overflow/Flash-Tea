@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 import { CrudService } from '../../shared/crud.service';
 
+import * as firebase from 'firebase';
+
 interface ItemArray {
+  id: any;
   name: string;
   img: string;
   price: number;
   sale: number;
+  quantity: number;
+  idUser: string;
 }
 
 @Component({
@@ -33,10 +38,40 @@ export class HomePage implements OnInit {
           // tslint:disable-next-line:no-string-literal
           sale: e.payload.doc.data()['sale'],
           // tslint:disable-next-line:no-string-literal
-          img: e.payload.doc.data()['img']
+          img: e.payload.doc.data()['img'],
+          quantity: 0,
+          idUser: firebase.auth().currentUser.uid
         };
       });
-      // tslint:disable-next-line:no-string-literal
     });
+
+    this.deleteCartStorage();
+  }
+
+  /**
+   * @description: delete cart storage if user login another account
+   * @author: quoctrung163
+   */
+  deleteCartStorage() {
+    const getCartStorage = JSON.parse(localStorage.getItem('cart'));
+    const getUserStorage = JSON.parse(localStorage.getItem('user'));
+    getCartStorage.forEach(cart => {
+      if (cart.idUser !== getUserStorage.uid) {
+        localStorage.removeItem('cart');
+      }
+    });
+  }
+
+  addToCart(idItem) {
+    const result = this.items.filter(item => {
+      if (item.id === idItem) {
+        (item.quantity) += 1;
+      }
+      return item.quantity > 0;
+    });
+
+    localStorage.setItem('cart', JSON.stringify(result));
+
+    console.log(result);
   }
 }
