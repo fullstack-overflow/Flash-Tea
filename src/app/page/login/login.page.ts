@@ -4,6 +4,8 @@ import { AuthenticationService } from '../../shared/authentication.service';
 
 import { ToastService } from '../../shared/toast.service';
 
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -23,14 +25,15 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.signInWithEmailAndPassword(email.value, password.value)
       .then(res => {
-        console.log(res);
-        if (this.authService.isEmailVerified) {
+        // tslint:disable-next-line:no-string-literal
+        if (res.user.emailVerified === true) {
           this.router.navigate(['root/home']);
         } else {
           this.toastService.presentToast('Email is not verified');
           return false;
         }
       }).catch(error => {
+        console.log(error.message);
         this.toastService.presentToast(error.message);
       });
   }

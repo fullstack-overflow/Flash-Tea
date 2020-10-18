@@ -3,22 +3,22 @@
   <form class="form" [formGroup]="registrationForm">
     <div>
       <p class="label">Email <a>*</a></p> <br />
-      <ion-input formControlName="email" type="email" [(ngModel)]="emailInput" #email required></ion-input>
+      <ion-input formControlName="email" type="email" #email required></ion-input>
     </div>
 
     <div>
       <p class="label">Tea Shop Name <a>*</a></p> <br />
-      <ion-input formControlName="teaname" type="text" [(ngModel)]="teaNameInput" #teaname required></ion-input>
+      <ion-input formControlName="teaname" type="text" #teaname required></ion-input>
     </div>
 
     <div>
       <p class="label">Password <a>*</a></p> <br />
-      <ion-input formControlName="password" type="password" [(ngModel)]="passInput" #password required></ion-input>
+      <ion-input formControlName="password" type="password" #password required></ion-input>
     </div>
 
     <div>
       <p class="label">Comfirm password <a>*</a></p> <br />
-      <ion-input formControlName="repassword" type="password" [(ngModel)]="rePassInput" #repassword required>
+      <ion-input formControlName="repassword" type="password" #repassword required>
       </ion-input>
     </div>
 
@@ -32,7 +32,7 @@
 
     <ion-button class="btn-Signup" type="submit" color="03A87C"
       [disabled]="!registrationForm.valid && (checkPasswordAndRePasswordIsSame(password, repassword) === false)"
-      (click)="signUp(email, password)">Sign Up</ion-button>
+      (click)="signUp(email.value, password.value, teaname.value)">Sign Up</ion-button>
   </form>
 
   <div class="btn-control" style="position:fixed; right: 0; bottom: 0;">
