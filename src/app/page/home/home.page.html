@@ -6,7 +6,11 @@
         <input type="text" placeholder="Search...">
         <div class="icon-search"></div>
       </div>
-      <div class="icon-cart" (click)="navigateToCartPage()"></div>
+
+      <ion-button (click)="navigateToCartPage()">
+        <ion-icon class="icon-cart"></ion-icon>
+        <ion-badge color="danger">100</ion-badge>
+      </ion-button>
     </div>
     <div class="location">
       <div class="icon-location"></div>
