@@ -29,6 +29,10 @@ const routes: Routes = [
         loadChildren: () => import('../shop-info/shop-info.module')
           .then(m => m.ShopInfoPageModule)
       }, {
+        path: 'cart',
+        loadChildren: () => import('../cart/cart-routing.module')
+          .then(m => m.CartPageRoutingModule)
+      }, {
         path: '',
         redirectTo: '/root/home',
         pathMatch: 'full'

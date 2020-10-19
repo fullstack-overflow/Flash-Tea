@@ -6,7 +6,7 @@
         <input type="text" placeholder="Search...">
         <div class="icon-search"></div>
       </div>
-      <div class="icon-cart"></div>
+      <div class="icon-cart" (click)="navigateToCartPage()"></div>
     </div>
     <div class="location">
       <div class="icon-location"></div>
@@ -27,7 +27,7 @@
           <h2>{{item.name}}</h2>
           <div class="price">
             <div class="price-item">
-              <p id="price-real">{{item.sale}} vnđ</p>
+              <p id="price-real">{{item.price * 0.8}} vnđ</p>
               <p id="price-sale">{{item.price}} vnđ</p>
             </div>
             <div class="icon-addtocard" (click)="addToCart(item.id)"></div>
@@ -37,22 +37,4 @@
     </ion-row>
 
   </ion-grid>
-  <!-- <div class="hot-items">
-    <p> Hot </p>
-      <div class="two">
-        <ng-container *ngFor="let item of items">
-          <div class="item">
-            <div class="imgItem"><img src= {{item.img}} alt=""></div>
-            <h2>{{item.name}}</h2>
-            <div class="price">
-              <div class="price-item">
-                <p id="price-real">{{item.real}} vnđ</p>
-                <p id="price-sale">{{item.sale}} vnđ</p>
-              </div>
-              <div class="icon-addtocard" (click)="add()"></div>
-            </div>
-          </div>
-        </ng-container>
-      </div>
-  </div>   -->
 </ion-content>
