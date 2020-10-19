@@ -1,0 +1,52 @@
+<ion-content fullscreen>
+  <div class="header">
+    <div class="icon"></div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <div class="icon-search"></div>
+    </div>
+    <div class="avt"></div>
+  </div>
+
+  <div class="my-items">
+    <h2>Giỏ hàng</h2>
+    <nav *ngFor="let item of items">
+      <div class="item" *ngIf="getDataItemsLocal(item.id) !== null">
+        <!-- <div > -->
+        <div class="img">
+          <img style="width:40px" src={{getDataItemsLocal(item.id).img}}>
+        </div>
+        <div class="desc">
+          <h3>{{ getDataItemsLocal(item.id).name }}</h3>
+          <p>{{ getDataItemsLocal(item.id).price }}</p>
+        </div>
+        <button class="btn-delete" (click)="onClick()"></button>
+        <!-- </div> -->
+      </div>
+    </nav>
+
+    <!-- <div class="item">
+      <div class="img"><img style="width:40px" src="../../../assets/items/MilkTea.png"></div>
+      <div class="desc">
+        <h3>35.000 đ</h3>
+        <p>Trà sữa</p>
+      </div>
+      <button class="btn-delete" (click)="onClick()"></button>
+    </div>
+    <div class="item">
+      <div class="img"><img style="width:40px" src="../../../assets/items/MilkTea.png"></div>
+      <div class="desc">
+        <h3>35.000 đ</h3>
+        <p>Trà sữa</p>
+      </div>
+      <button class="btn-delete" (click)="onClick()"></button>
+    </div>
+    <div class="total">
+      <h1>Tổng:</h1>
+      <p>105.000 đ</p>
+    </div> -->
+  </div>
+  <ion-button class="btn" (click)="onClick()" expand="block" fill="clear" shape="round">
+    Thanh toán
+  </ion-button>
+</ion-content>

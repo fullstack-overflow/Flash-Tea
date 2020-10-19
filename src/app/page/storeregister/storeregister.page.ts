@@ -20,10 +20,7 @@ import * as firebase from 'firebase';
 export class StoreregisterPage implements OnInit {
 
   registrationForm: FormGroup;
-  emailInput: string;
-  passInput: string;
-  rePassInput: string;
-  teaNameInput: string;
+
   uploadimage: string;
   filePathImage: string;
   fileImage: any;
@@ -49,12 +46,12 @@ export class StoreregisterPage implements OnInit {
   ngOnInit() {
   }
 
-  signUp(email, password) {
-    this.authService.registerWithEmailAndPassword(email.value, password.value)
+  signUp(email, password, teaname) {
+    this.authService.registerWithEmailAndPassword(email, password)
       .then((res => {
         // firebase.auth().currentUser.set
-        console.log(this.teaNameInput);
-        this.successHandleSignUp(res, this.teaNameInput);
+        console.log(teaname);
+        this.successHandleSignUp(res, teaname);
         console.log(res);
       })).catch(error => {
         this.toastService.presentToast(error.message);
