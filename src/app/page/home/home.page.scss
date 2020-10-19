@@ -42,6 +42,26 @@
     }
   }
 
+  ion-button {
+    width: -30%;
+    --padding-start: 0;
+    --padding-end: 1.5em;
+    --background: #ffffff00;
+    --box-shadow: none;
+    ion-badge {
+        border-radius: 50px;
+        position: absolute;
+        padding: 3px 8px 3px 8px;
+        opacity: 0.9;
+        top: 0rem;
+        left: 1rem;
+        & ~ ion-icon {
+            margin-right: 1.2rem;
+            color: #404A5A;
+        }
+    }
+}
+
   .icon-cart {
     margin-right: 5%;
     width: 30px;
