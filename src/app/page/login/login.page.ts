@@ -27,7 +27,10 @@ export class LoginPage implements OnInit {
       .then(res => {
         // tslint:disable-next-line:no-string-literal
         if (res.user.emailVerified === true) {
+          console.log(res.user.uid);
           this.router.navigate(['root/home']);
+
+          // this.router.
         } else {
           this.toastService.presentToast('Email is not verified');
           return false;

@@ -23,6 +23,7 @@ import { AdminListService } from './shared/admin-list.service';
 
 import { AuthenticationService } from './shared/authentication.service';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
