@@ -9,7 +9,7 @@
 
       <ion-button (click)="navigateToCartPage()">
         <ion-icon class="icon-cart"></ion-icon>
-        <ion-badge color="danger">100</ion-badge>
+        <ion-badge color="danger" *ngIf="countNumber > 0">{{ countNumber }}</ion-badge>
       </ion-button>
     </div>
     <div class="location">
