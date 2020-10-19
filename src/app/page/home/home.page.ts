@@ -27,6 +27,7 @@ interface ItemArray {
 export class HomePage implements OnInit {
   items: ItemArray[] = [];
   currentUser: any;
+  countNumber = 0;
 
   constructor(
     private crudService: CrudService,
@@ -44,6 +45,7 @@ export class HomePage implements OnInit {
 
   ionViewDidEnter() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.countNumber = JSON.parse(localStorage.getItem('count'));
     if (this.currentUser === null) {
       this.crudService.getItemsFromFirebaseCloud().subscribe(data => {
         this.items = data.map(e => {
@@ -105,12 +107,14 @@ export class HomePage implements OnInit {
     this.items.forEach(item => {
       if (item.id in localStorage && item.idUser !== getUserStorage.uid) {
         localStorage.removeItem(item.id);
+        localStorage.removeItem('count');
       }
     });
   }
 
   addToCart(idItem) {
     const getItemLocalStorage = JSON.parse(localStorage.getItem(idItem));
+    const getCountLocalStorage = JSON.parse(localStorage.getItem('count'));
 
     if (firebase.auth().currentUser === null) {
 
@@ -121,25 +125,29 @@ export class HomePage implements OnInit {
 
     this.toast.presentToast('Đã thêm vào giỏ hàng!');
 
-    if (getItemLocalStorage === null) {
+    if (getItemLocalStorage === null || getCountLocalStorage === null) {
       // tslint:disable-next-line:prefer-const
       let result = this.items.find(item => {
         if (item.id === idItem) {
           item.quantity += 1;
+          this.countNumber += 1;
         }
         return item.id === idItem;
       });
       localStorage.setItem(idItem, JSON.stringify(result));
+      localStorage.setItem('count', JSON.stringify(this.countNumber));
     } else {
       console.log(getItemLocalStorage);
       // tslint:disable-next-line:prefer-const
       let result = this.items.find(item => {
         if (item.id === idItem) {
           item.quantity = getItemLocalStorage.quantity + 1;
+          this.countNumber = Number(getCountLocalStorage) + 1;
         }
         return item.id === idItem;
       });
       localStorage.setItem(idItem, JSON.stringify(result));
+      localStorage.setItem('count', JSON.stringify(this.countNumber));
     }
   }
 }

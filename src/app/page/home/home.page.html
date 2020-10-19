@@ -6,7 +6,15 @@
         <input type="text" placeholder="Search...">
         <div class="icon-search"></div>
       </div>
+<<<<<<< Updated upstream
       <div class="icon-cart" (click)="navigateToCartPage()"></div>
+=======
+
+      <ion-button (click)="navigateToCartPage()">
+        <ion-icon class="icon-cart"></ion-icon>
+        <ion-badge color="danger" *ngIf="countNumber > 0">{{ countNumber }}</ion-badge>
+      </ion-button>
+>>>>>>> Stashed changes
     </div>
     <div class="location">
       <div class="icon-location"></div>
