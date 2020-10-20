@@ -30,13 +30,17 @@ export class CartPage implements OnInit {
   itemsInStorage = [];
   currentUser: any;
   local: any;
+  total1 = '';
 
   constructor(
     private crudService: CrudService,
     public ngFireAuth: AngularFireAuth,
     private router: Router,
     public toast: ToastService
-  ) { }
+  ) {
+
+    this.total1 = localStorage.getItem('total');
+  }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
@@ -81,10 +85,26 @@ export class CartPage implements OnInit {
     }
   }
 
-  getDataItemsLocal(key: string): (object | null) {
-    return JSON.parse(localStorage.getItem(key));
+  ionViewDidEnter() {
+
   }
 
-  ionViewDidEnter() {
+  ionViewDidLeave() {
+
+  }
+
+  getDataItemsLocal(key: string): object | null {
+    const dataItemStorage = JSON.parse(localStorage.getItem(key));
+    return dataItemStorage;
+  }
+
+  deleteItem(key: string) {
+    const dataItemStorage = JSON.parse(localStorage.getItem(key));
+    const count = JSON.parse(localStorage.getItem('count'));
+    const totalItem = JSON.parse(localStorage.getItem('total'));
+    localStorage.setItem('total', (Number(totalItem) - (Number(dataItemStorage.price) * Number(dataItemStorage.quantity))).toString());
+    localStorage.setItem('count', (Number(count) - Number(dataItemStorage.quantity)).toString());
+    this.total1 = localStorage.getItem('total');
+    return localStorage.removeItem(key);
   }
 }

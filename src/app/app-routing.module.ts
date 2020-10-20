@@ -65,12 +65,16 @@ const routes: Routes = [
   },
   {
     path: 'form-update',
-    loadChildren: () => import('./page/form-update/form-update.module').then( m => m.FormUpdatePageModule)
-  },  {
-    path: 'item-detail',
-    loadChildren: () => import('./page/item-detail/item-detail.module').then( m => m.ItemDetailPageModule)
+    loadChildren: () => import('./page/form-update/form-update.module').then(m => m.FormUpdatePageModule)
   },
-
+  {
+    path: 'item/:itemId',
+    loadChildren: () => import('./page/item/item.module').then(m => m.ItemPageModule)
+  }, 
+  {
+    path: 'item-detail', 
+    loadChildren: () => import('./page/item-detail/item-detail.module').then( m => m.ItemDetailPageModule)
+  }
 ];
 
 @NgModule({

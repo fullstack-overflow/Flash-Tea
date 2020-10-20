@@ -20,17 +20,18 @@
           <h3>{{ getDataItemsLocal(item.id).name }}</h3>
           <p>{{ getDataItemsLocal(item.id).price }} vnđ</p>
         </div>
-        <p>{{count}} x20</p>
-        <button class="btn-delete" (click)="onClick()"></button>
+        <p> x {{ getDataItemsLocal(item.id).quantity }}</p>
+        <button class="btn-delete" (click)="deleteItem(item.id)"></button>
         <!-- </div> -->
       </div>
     </nav>
 
-   
     <div class="total">
-      <h1>Tổng:</h1>
-      <p>105.000 đ</p>
-    </div> 
+      <div>
+        <h1>Tổng:</h1>
+        <p>{{ total1 }}</p>
+      </div>
+    </div>
   </div>
   <ion-button class="btn" (click)="onClick()" expand="block" fill="clear" shape="round">
     Thanh toán
