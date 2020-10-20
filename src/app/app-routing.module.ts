@@ -70,7 +70,11 @@ const routes: Routes = [
   {
     path: 'item/:itemId',
     loadChildren: () => import('./page/item/item.module').then(m => m.ItemPageModule)
-  },
+  }, 
+  {
+    path: 'item-detail', 
+    loadChildren: () => import('./page/item-detail/item-detail.module').then( m => m.ItemDetailPageModule)
+  }
 ];
 
 @NgModule({
