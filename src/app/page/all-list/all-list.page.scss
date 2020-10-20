@@ -104,24 +104,17 @@
       }
 
       .price {
+        margin-top: 1px;
+        width: 90%;
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
+         align-items: center;
+        // justify-content: center;
         padding-left: 3px;
 
         .price-item {
           float: left;
-          width: 65%;
-
-          #price-real {
-            margin: 15px 0 0 10px;
-            font-weight: bold;
-            text-decoration: line-through;
-            font-size: 10px;
-            line-height: 12px;
-            color: #ADADAD;
-          }
+          width: 75%;
 
           #price-sale {
             margin: 4px 0 12px 10px;
@@ -133,7 +126,8 @@
         }
 
         .icon-addtocard {
-          margin: 5px 0 0 0;
+          padding: 5px;
+          margin: 5px 0 5px 0;
           width: 30px;
           height: 30px;
           background: url('../../../assets/icon/icon-add-to-cart.svg') no-repeat;
@@ -144,7 +138,6 @@
 
   }
 }
-
 .fixed {
   position: fixed;
   z-index: 100000;
