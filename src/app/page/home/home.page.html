@@ -26,8 +26,9 @@
     <ion-row>
       <ion-col size="12" size-sm="6" size-xs="6" size-md="4" size-lg="3" *ngFor="let item of items">
         <div class="item">
-          <div class="imgItem"><img src={{item.img}} alt="" class="img-fix" style="border-radius: 8px; "></div>
-          <h2>{{item.name}}</h2>
+          <div class="imgItem" (click)="navigateToDetailItem(item.id)"><img src={{item.img}} alt="" class="img-fix"
+              style="border-radius: 8px; "></div>
+          <h2 (click)="navigateToDetailItem(item.id)">{{item.name}}</h2>
           <div class="price">
             <div class="price-item">
               <p id="price-real">{{item.price * 0.8}} vnđ</p>

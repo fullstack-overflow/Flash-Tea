@@ -65,7 +65,11 @@ const routes: Routes = [
   },
   {
     path: 'form-update',
-    loadChildren: () => import('./page/form-update/form-update.module').then( m => m.FormUpdatePageModule)
+    loadChildren: () => import('./page/form-update/form-update.module').then(m => m.FormUpdatePageModule)
+  },
+  {
+    path: 'item/:itemId',
+    loadChildren: () => import('./page/item/item.module').then(m => m.ItemPageModule)
   },
 ];
 

@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
 import { ToastService } from '../../shared/toast.service';
+import { NavController } from '@ionic/angular';
 
 interface ItemArray {
   id: any;
@@ -34,16 +35,20 @@ export class HomePage implements OnInit {
     public ngFireAuth: AngularFireAuth,
     private router: Router,
     public toast: ToastService
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
+    // this.deleteCartStorage();
+  }
+
+  async initLocalStorage() {
+    this.currentUser = await JSON.parse(localStorage.getItem('user'));
+    this.countNumber = await JSON.parse(localStorage.getItem('count'));
   }
 
   ionViewWillEnter() {
-
-  }
-
-  ionViewDidEnter() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.countNumber = JSON.parse(localStorage.getItem('count'));
     if (this.currentUser === null) {
@@ -88,12 +93,20 @@ export class HomePage implements OnInit {
     }
   }
 
+  ionViewDidEnter() {
+    // this.deleteCartStorage();
+  }
+
   ionViewDidLeave() {
     this.deleteCartStorage();
   }
 
   navigateToCartPage() {
     this.router.navigateByUrl('cart');
+  }
+
+  navigateToDetailItem(id: string) {
+    this.router.navigate([`item/${id}`]);
   }
 
   /**
@@ -108,6 +121,7 @@ export class HomePage implements OnInit {
       if (item.id in localStorage && item.idUser !== getUserStorage.uid) {
         localStorage.removeItem(item.id);
         localStorage.removeItem('count');
+        localStorage.removeItem('total');
       }
     });
   }
@@ -117,7 +131,6 @@ export class HomePage implements OnInit {
     const getCountLocalStorage = JSON.parse(localStorage.getItem('count'));
 
     if (firebase.auth().currentUser === null) {
-
       this.toast.presentToast('Bạn cần phải đăng nhập để thêm vào giỏ hàng');
       this.router.navigateByUrl('login');
       return;
