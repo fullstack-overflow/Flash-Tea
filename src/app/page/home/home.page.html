@@ -24,7 +24,7 @@
   <ion-grid fixed class="hot-items list-items">
     <p>Hot</p>
     <ion-row>
-      <ion-col size="12" size-sm="6" size-xs="6" size-md="4" size-lg="3" *ngFor="let item of items">
+      <ion-col size="12" size-sm="6" size-xs="6" size-md="4" size-lg="3" *ngFor="let item of itemsDataService.items">
         <div class="item">
           <div class="imgItem" (click)="navigateToDetailItem(item.id)"><img src={{item.img}} alt="" class="img-fix"
               style="border-radius: 8px; "></div>
@@ -33,7 +33,7 @@
             <div class="price-item">
               <p id="price-sale">{{item.price}} vnđ</p>
             </div>
-            <div class="icon-addtocard" (click)="addToCart(item.id)"></div>
+            <div class="icon-addtocard" (click)="checkAndAddToCart(item.id, countNumber)"></div>
           </div>
         </div>
       </ion-col>
