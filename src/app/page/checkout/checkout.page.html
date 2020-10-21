@@ -1,0 +1,57 @@
+<ion-content fullscreen>
+  <div class="header">
+    <div class="icon"></div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <div class="icon-search"></div>
+    </div>
+    <div class="avt"></div>
+  </div>
+  <div class="delivery">
+    <p>Delivery address: </p>
+    <textarea placeholder="ex: c10/2 - tpdalat" [(ngModel)]="address" name="address" id="textarea"></textarea>
+    <!-- <ion-textarea [(ngModel)]="address" name="address" id="textarea"></ion-textarea> -->
+  </div>
+
+  <div class="check">
+    <label class="container">Ship COD
+      <input type="checkbox" [(ngModel)]="shipcod">
+      <span class="checkmark"></span>
+    </label>
+    <label class="container">Master card
+      <input type="checkbox" [(ngModel)]="masterCart">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+
+  <form *ngIf="masterCart === true">
+    <div class="card">
+      <p>Card number:</p>
+      <div class="input">
+        <ion-input type="number" [(ngModel)]="cardNumber" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx">
+        </ion-input>
+      </div>
+      <p>Card Holder:</p>
+      <div class="input">
+        <ion-input [(ngModel)]="cardHolder" name="cardHolder" type="text" placeholder="____ ____ ____ ____"></ion-input>
+      </div>
+      <p>Expiry date:</p>
+      <div class="input">
+        <ion-input type="date" [(ngModel)]="dateCheckout" name="dateCheckout"></ion-input>
+      </div>
+      <p>Security code:</p>
+      <div class="input">
+        <ion-input type="number" placeholder="xxxx" [(ngModel)]="securityCode" name="securityCode"></ion-input>
+      </div>
+    </div>
+  </form>
+
+  <div class="total">
+    <h1>Tổng:</h1>
+    <p>{{total}} đ</p>
+  </div>
+  <ion-button [disabled]="this.shipcod === undefined && this.masterCart === undefined" class="btn" type="submit"
+    (click)="checkOutSucessful()" expand="block" fill="clear" shape="round">
+    Thanh toán
+  </ion-button>
+</ion-content>

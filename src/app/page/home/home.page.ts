@@ -29,8 +29,6 @@ export class HomePage implements OnInit {
     public toast: ToastService,
     public addToCartService: AddToCartService
   ) {
-    // this.countNumber = JSON.parse(localStorage.getItem('count'));
-    // console.log(this.countNumber);
   }
 
   async ngOnInit() {
