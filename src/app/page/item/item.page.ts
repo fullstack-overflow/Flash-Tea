@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 
 import { ItemsDataService } from '../../shared/items-data.service';
 
-import { Items } from '../../types/items';
-
 import { ToastService } from '../../shared/toast.service';
 
 import { AddToCartService } from '../../shared/add-to-cart.service';
+
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-item',
@@ -30,14 +30,15 @@ export class ItemPage implements OnInit {
     private router: Router,
     public itemsDataService: ItemsDataService,
     public toats: ToastService,
-    public addToCartService: AddToCartService
+    public addToCartService: AddToCartService,
+    private location: Location
   ) {
     this.idItem = this.router.url.split(`/item/`).join(``);
   }
 
   async ngOnInit() {
     await this.initLocalStorage();
-    await this.callItemsDataService(this.currentUser, this.idItem);
+    await this.callItemsDataService(this.idItem);
   }
 
   async ionViewWillEnter() {
@@ -61,8 +62,8 @@ export class ItemPage implements OnInit {
     this.countNumber = await JSON.parse(localStorage.getItem('count'));
   }
 
-  async callItemsDataService(currentUser, itemID) {
-    await this.itemsDataService.initItemDetail(currentUser, itemID);
+  async callItemsDataService(itemID) {
+    await this.itemsDataService.initItemDetail(itemID);
   }
 
   addToCart(itemDetail, countNumber) {
@@ -76,5 +77,9 @@ export class ItemPage implements OnInit {
 
   click() {
     console.log(this.itemsDataService.itemDetail.name);
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

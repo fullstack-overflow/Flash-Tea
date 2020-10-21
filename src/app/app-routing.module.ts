@@ -70,6 +70,14 @@ const routes: Routes = [
   {
     path: 'item/:itemId',
     loadChildren: () => import('./page/item/item.module').then(m => m.ItemPageModule)
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./page/checkout/checkout.module').then( m => m.CheckoutPageModule)
+  },
+  {
+    path: 'checkout-success',
+    loadChildren: () => import('./page/checkout-success/checkout-success.module').then( m => m.CheckoutSuccessPageModule)
   }
 ];
 

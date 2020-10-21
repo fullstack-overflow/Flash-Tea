@@ -10,7 +10,7 @@
 
   <div class="my-items">
     <h2>Giỏ hàng</h2>
-    <nav *ngFor="let item of items">
+    <nav *ngFor="let item of itemsDataService.items">
       <div class="item" *ngIf="getDataItemsLocal(item.id) !== null">
         <!-- <div > -->
         <div class="img">
@@ -29,11 +29,11 @@
     <div class="total">
       <div>
         <h1>Tổng:</h1>
-        <p>{{ total1 }}</p>
+        <p>{{ total }}</p>
       </div>
     </div>
   </div>
-  <ion-button class="btn" (click)="onClick()" expand="block" fill="clear" shape="round">
+  <ion-button class="btn" (click)="navigateToCheckout()" expand="block" fill="clear" shape="round">
     Thanh toán
   </ion-button>
 </ion-content>

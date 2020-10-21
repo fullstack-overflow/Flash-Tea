@@ -1,0 +1,27 @@
+<ion-content fullscreen>
+  <div class="header">
+    <div class="icon" (click)="goBack()"></div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <div class="icon-search"></div>
+    </div>
+    <div class="avt"></div>
+  </div>
+  <div class="notifi">
+    <div class="mess">
+      <div class="success"></div>
+      <div class="imess">
+        <div class="icon-active"></div>
+        <h1>successful</h1>
+      </div>
+    </div>
+  </div>
+  <div class="control">
+    <ion-button class="btn-continute" (click)="continueShopping()" expand="block" fill="clear" shape="round">
+      Tiếp tục mua sắm
+    </ion-button>
+    <ion-button class="btn-bill" (click)="onClick()" expand="block" fill="clear" shape="round">
+      kiểm tra đơn hàng
+    </ion-button>
+  </div>
+</ion-content>
