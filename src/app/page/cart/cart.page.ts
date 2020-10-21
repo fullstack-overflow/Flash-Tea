@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 
 import { ToastService } from '../../shared/toast.service';
 
+import { Location } from '@angular/common';
+
+
 interface ItemArray {
   id: any;
   name: string;
@@ -36,7 +39,8 @@ export class CartPage implements OnInit {
     private crudService: CrudService,
     public ngFireAuth: AngularFireAuth,
     private router: Router,
-    public toast: ToastService
+    public toast: ToastService,
+    private location: Location
   ) {
 
     this.total1 = localStorage.getItem('total');
@@ -106,5 +110,10 @@ export class CartPage implements OnInit {
     localStorage.setItem('count', (Number(count) - Number(dataItemStorage.quantity)).toString());
     this.total1 = localStorage.getItem('total');
     return localStorage.removeItem(key);
+  }
+
+  goBack() {
+    // this.location.back();
+    this.router.navigateByUrl('root/home');
   }
 }
