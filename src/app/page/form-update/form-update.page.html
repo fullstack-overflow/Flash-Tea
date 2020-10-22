@@ -11,29 +11,33 @@
         <div class="content">
           <p>Tên:</p>
           <div class="row-short">
-            <ion-input class="input-text" type="text"></ion-input>
+            <ion-input [(ngModel)]="name" name="name" class="input-text" type="text"
+              placeholder="{{ getDisplayName() }}">
+            </ion-input>
           </div>
           <p>Email:</p>
           <div class="row-short">
-            <ion-input class="input-text" type="email"></ion-input>
+            <ion-input disabled [(ngModel)]="email" name="email" class="input-text" type="email"
+              placeholder="{{ getEmail() }}">
+            </ion-input>
           </div>
           <p>Số điện thoại:</p>
           <div class="row-short">
-            <ion-input class="input-text" type="text"></ion-input>
+            <ion-input placeholder="{{ getPhoneNumber() }}" [(ngModel)]="phoneNumber" name="phoneNumber"
+              class="input-text" type="text"></ion-input>
           </div>
           <p>Địa chỉ:</p>
           <div class="row-long">
-            <ion-textarea class="input-text" name="description"
-              #description></ion-textarea>
+            <ion-textarea class="input-text" [(ngModel)]="address" name="address"></ion-textarea>
           </div>
         </div>
         <div class="img-user">
-          <input (change)="changeImage()" type="file" #image name="image" id="image"
-            class="fileInput" accept="image/*" required />
+          <input (change)="changeImage()" type="file" #image name="image" id="image" class="fileInput" accept="image/*"
+            required />
         </div>
       </div>
-      <ion-button class="btn" type="submit" color="03A87C" expand="block" fill="clear" shape="round"
-        >Cập nhật
+      <ion-button (click)="updateProfile(name, phoneNumber, address)" class="btn" type="submit" color="03A87C"
+        expand="block" fill="clear" shape="round">Cập nhật
       </ion-button>
     </form>
   </div>
