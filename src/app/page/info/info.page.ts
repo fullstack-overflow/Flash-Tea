@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AdminListService } from '../../shared/admin-list.service';
+
 @Component({
   selector: 'app-info',
   templateUrl: './info.page.html',
@@ -8,7 +10,10 @@ import { Router } from '@angular/router';
 })
 export class InfoPage implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(
+    public router: Router,
+    public adminList: AdminListService
+  ) { }
 
   ngOnInit() {
   }
@@ -23,8 +28,8 @@ export class InfoPage implements OnInit {
     if (getUser.emailVerified === false) {
       return this.router.navigate(['verify-email']);
     }
-    console.log(getadminList);
-    const emailFind = getadminList.find(item => {
+
+    const emailFind = this.adminList.account.find(item => {
       return item.email === getUser.email;
     });
 
