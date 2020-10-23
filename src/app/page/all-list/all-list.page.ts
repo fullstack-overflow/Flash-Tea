@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '../../services/toast.service';
 
-import { ItemsDataService } from '../../shared/items-data.service';
+import { ItemsDataService } from '../../services/items-data.service';
 
-import { AddToCartService } from 'src/app/shared/add-to-cart.service';
+import { AddToCartService } from 'src/app/services/add-to-cart.service';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 

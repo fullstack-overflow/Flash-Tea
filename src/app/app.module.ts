@@ -15,13 +15,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
-import { ToastService } from './shared/toast.service';
+import { ToastService } from './services/toast.service';
 
-import { CrudService } from './shared/crud.service';
+import { CrudService } from './services/crud.service';
 
-import { AdminListService } from './shared/admin-list.service';
+import { AdminListService } from './services/admin-list.service';
 
-import { AuthenticationService } from './shared/authentication.service';
+import { AuthenticationService } from './services/authentication.service';
 
 
 @NgModule({

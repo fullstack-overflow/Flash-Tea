@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AdminListService } from '../../shared/admin-list.service';
+import { AdminListService } from '../../services/admin-list.service';
 
 @Component({
   selector: 'app-info',
@@ -51,11 +51,11 @@ export class InfoPage implements OnInit {
     }
 
     if (this.emailFind !== undefined && this.currentUser !== null) {
-      return this.router.navigate(['root/shop-info']);
+      return this.router.navigate([`root/shop-profile/${this.emailFind.id}`]);
     }
 
     if (this.emailFind === undefined && this.currentUser !== null) {
-      return this.router.navigate(['root/info-user']);
+      return this.router.navigate([`root/user-profile/${this.currentUser.uid}`]);
     }
   }
 }

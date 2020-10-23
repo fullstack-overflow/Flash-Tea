@@ -21,13 +21,11 @@ const routes: Routes = [
         loadChildren: () => import('../info/info.module')
           .then(m => m.InfoPageModule)
       }, {
-        path: 'info-user',
-        loadChildren: () => import('../info-user/info-user.module')
-          .then(m => m.InfoUserPageModule)
+        path: 'user-profile/:userid',
+        loadChildren: () => import('../user-profile/user-profile.module').then(m => m.UserProfilePageModule)
       }, {
-        path: 'shop-info',
-        loadChildren: () => import('../shop-info/shop-info.module')
-          .then(m => m.ShopInfoPageModule)
+        path: 'shop-profile/:shopid',
+        loadChildren: () => import('../shop-profile/shop-profile.module').then(m => m.ShopProfilePageModule)
       }, {
         path: 'cart',
         loadChildren: () => import('../cart/cart-routing.module')

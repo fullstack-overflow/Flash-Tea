@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import * as firebase from 'firebase';
 
-import { ToastService } from '../shared/toast.service';
+import { ToastService } from '../services/toast.service';
 
 @Injectable({
   providedIn: 'root'
