@@ -19,6 +19,7 @@ import { AddToCartService } from 'src/app/shared/add-to-cart.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+
   currentUser: any;
   countNumber = 0;
 

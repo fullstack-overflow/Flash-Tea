@@ -78,6 +78,10 @@ const routes: Routes = [
   {
     path: 'checkout-success',
     loadChildren: () => import('./page/checkout-success/checkout-success.module').then( m => m.CheckoutSuccessPageModule)
+  },
+  {
+    path: 'form-update-shop',
+    loadChildren: () => import('./page/form-update-shop/form-update-shop.module').then( m => m.FormUpdateShopPageModule)
   }
 ];
 

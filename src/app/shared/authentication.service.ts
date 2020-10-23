@@ -1,12 +1,15 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from './user';
-import { StoreAccount } from './storeAccount';
+import { User } from '../types/user';
+import { StoreAccount } from '../types/storeAccount';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { NavController } from '@ionic/angular';
 
+import { UserService } from '../shared/user.service';
+import { CrudService } from './crud.service';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,22 +17,23 @@ export class AuthenticationService {
 
   userData: any;
   messageAuthentication: string;
+
   constructor(
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public userService: UserService,
+    public crudService: CrudService
   ) {
     this.ngFireAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
 
       } else {
         localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
       }
     });
   }
@@ -116,7 +120,41 @@ export class AuthenticationService {
     });
   }
 
-  // store shop account to cloude database
+  // update profile user to cloud firebase
+  setUpdateUserData(user, pathImage, displayName, phoneNumber, address) {
+    const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`users/${user.uid}`);
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName,
+      photoURL: pathImage,
+      emailVerified: user.emailVerified,
+      phoneNumber,
+      address,
+    };
+    return userRef.set(userData, {
+      merge: true
+    });
+  }
+
+  // set update profile shop admin to cloude firebase
+  setUpdateShopAccData(shop, pathImage, displayName, phoneNumber, address) {
+    const shopRef: AngularFirestoreDocument<any> = this.afStore.doc(`shops/${shop.uid}`);
+    const shopData: StoreAccount = {
+      uid: shop.uid,
+      email: shop.email,
+      displayName,
+      photoURL: pathImage,
+      emailVerified: shop.emailVerified,
+      phoneNumber,
+      address
+    };
+    return shopRef.set(shopData, {
+      merge: true
+    });
+  }
+
+  // store shop account to cloud firebase
   setShopAccountData(shop, pathImage, teaname) {
     const shopRef: AngularFirestoreDocument<any> = this.afStore.doc(`shops/${shop.uid}`);
     const shopData: StoreAccount = {

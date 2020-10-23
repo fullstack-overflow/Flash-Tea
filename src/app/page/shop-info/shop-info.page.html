@@ -1,6 +1,6 @@
 <ion-content fullscreen>
   <div class="header">
-    <div class="icon"></div>
+    <div class="icon" (click)="goBack()"></div>
     <div class="search">
       <input type="text" placeholder="Search...">
       <div class="icon-search"></div>
@@ -8,19 +8,25 @@
   </div>
 
   <div class="item">
-    <div class="content">
-      <h1>{{displayName}}</h1>
+    <div class="content" (click)="navigateToFormUpdateShop()">
+      <h1>{{ getShop().displayName }}</h1>
       <div class="row">
-        <p>Địa chỉ: P8 - Dalat City</p><button class="icongo"></button>
+        <p>Uid: {{ getShop().uid }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
       </div>
       <div class="row">
-        <p>Email: {{email}}</p><button class="icongo"></button>
+        <p>Email: {{ getShop().email }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
       </div>
       <div class="row">
-        <p>Số điện thoại: 0xxxxxxxx0</p><button class="icongo"></button>
+        <p>Số điện thoại: {{ getShop().phoneNumber }}</p><button class="icongo"
+          (click)="navigateToFormUpdateShop()"></button>
+      </div>
+
+      <div class="row">
+        <p>Address: {{ getShop().address }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
       </div>
     </div>
-    <img class="img-user" src="{{photoURL}}" />
+
+    <img class="img-user" src="{{ getShop().photoURL }}" />
 
     <div class="control">
       <ion-button class="btn-bill" expand="block" fill="clear" shape="round">

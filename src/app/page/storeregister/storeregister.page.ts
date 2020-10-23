@@ -24,7 +24,6 @@ export class StoreregisterPage implements OnInit {
   uploadimage: string;
   filePathImage: string;
   fileImage: any;
-  pathImageURL: string | null;
 
   constructor(
     public authService: AuthenticationService,
@@ -62,11 +61,9 @@ export class StoreregisterPage implements OnInit {
     await this.authService.sendVerificationEmail();
     await this.registrationForm.reset();
     await this.uploadImage(res.user, teaname);
-    // const result = await this.pathImageURL;
-    // console.log(this.pathImageURL);
+
     await this.toastService.presentToast('Please check your email for success registration');
     await this.router.navigate(['verify-email']);
-    // await this.authService.setShopAccountData(res.user, 'dosomething2jgkajgka');
   }
 
   updateProfileShop(path, teaname): void {

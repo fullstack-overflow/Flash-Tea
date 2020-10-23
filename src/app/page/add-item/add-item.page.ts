@@ -59,13 +59,13 @@ export class AddItemPage implements OnInit {
     //   this.firestore.createId, name, price, description, this.filePathImage, this.getShopAccount.name
     // );
     const id = this.firestore.createId();
-    await this.uploadImageAndSetShopAccountData(
+    await this.uploadImageAndSetItemsData(
       id, name, Number(price), description, this.fileImage, this.filePathImage, this.getShopAccount.displayName
     );
     this.router.navigate(['root/home']);
   }
 
-  async uploadImageAndSetShopAccountData(uid, name, price, description, fileImage, filePathImage, nameShop) {
+  async uploadImageAndSetItemsData(uid, name, price, description, fileImage, filePathImage, nameShop) {
     console.log('uid', uid);
     console.log('name', name);
     console.log('price', price);
