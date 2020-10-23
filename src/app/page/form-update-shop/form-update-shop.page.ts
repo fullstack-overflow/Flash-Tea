@@ -12,13 +12,14 @@ import { AngularFireStorage } from '@angular/fire/storage';
 
 import * as firebase from 'firebase';
 
-@Component({
-  selector: 'app-form-update',
-  templateUrl: './form-update.page.html',
-  styleUrls: ['./form-update.page.scss'],
-})
-export class FormUpdatePage implements OnInit {
+import { AdminListService } from '../../shared/admin-list.service';
 
+@Component({
+  selector: 'app-form-update-shop',
+  templateUrl: './form-update-shop.page.html',
+  styleUrls: ['./form-update-shop.page.scss'],
+})
+export class FormUpdateShopPage implements OnInit {
   fileImage: any;
   filePathImage: string;
 
@@ -29,29 +30,32 @@ export class FormUpdatePage implements OnInit {
   address: string;
 
   currentUser: any;
-
   constructor(
     public authService: AuthenticationService,
     public router: Router,
     public toastService: ToastService,
-    private firestore: AngularFirestore,
     public crudService: CrudService,
-    private afStorage: AngularFireStorage
-  ) {
-
-  }
+    private afStorage: AngularFireStorage,
+    public adminList: AdminListService
+  ) { }
 
   ngOnInit() {
   }
 
-  ionViewWillEnter() {
-    this.currentUser = firebase.auth().currentUser;
+  async ionViewWillEnter() {
+    const result = await this.adminList.account.find(item => {
+      return item.email === firebase.auth().currentUser.email;
+    });
+
+    if (result !== null) {
+      this.currentUser = firebase.auth().currentUser;
+    } else {
+      this.router.navigateByUrl('root/home');
+      this.toastService.presentToast('Only shop account can access to this page');
+    }
   }
 
-  ionViewDidEnter() { }
-
-  async updateProfile(user, name, phoneNumber, address) {
-
+  async updateProfileShop(shop, name, phoneNumber, address) {
     if (name === undefined) {
       name = firebase.auth().currentUser.displayName;
     }
@@ -69,27 +73,27 @@ export class FormUpdatePage implements OnInit {
       return;
     }
 
-    await this.uploadImageAndSetUserAccountData(user, name, phoneNumber, address);
+    await this.uploadImageAndSetShopAccountData(shop, name, phoneNumber, address);
     await this.toastService.presentToast('Update profile sucessful! ^^');
-    await this.router.navigateByUrl('root/info-user');
+    await this.router.navigateByUrl('root/shop-info');
   }
 
-  async uploadImageAndSetUserAccountData(user, name, phoneNumber, address) {
-    const ref = await this.afStorage.ref('upload/' + user.uid + '/' + this.filePathImage);
+  async uploadImageAndSetShopAccountData(shop, name, phoneNumber, address) {
+    const ref = await this.afStorage.ref('upload/' + shop.uid + '/' + this.filePathImage);
     await ref.put(this.fileImage).then(res => {
       ref.getDownloadURL().subscribe(url => {
-        this.authService.setUpdateUserData(user, url, name, phoneNumber, address);
-        this.updateIntoCurrentUserProfile(name, url);
+        this.authService.setUpdateShopAccData(shop, url, name, phoneNumber, address);
+        this.updateIntoCurrentShopProfile(name, url);
       });
     }).catch(e => {
       this.toastService.presentToast(`Err ${e}`);
     });
   }
 
-  async updateIntoCurrentUserProfile(displayName: string, photoURL: string) {
+  async updateIntoCurrentShopProfile(displayName: string, photoURL: string) {
     await firebase.auth().currentUser.updateProfile({
       displayName,
-      photoURL,
+      photoURL
     });
   }
 
@@ -135,14 +139,38 @@ export class FormUpdatePage implements OnInit {
   }
 
   getPhoneNumber(): number | string | null {
-    if (firebase.auth().currentUser === null) {
-      return JSON.parse(localStorage.getItem('user')).phoneNumber;
-    }
-
     if (firebase.auth().currentUser === null && JSON.parse(localStorage.getItem('user')) === null) {
       return '';
     }
 
-    return firebase.auth().currentUser.phoneNumber;
+    if (firebase.auth().currentUser === null) {
+      return this.adminList.account.find(ad => {
+        return ad.email === JSON.parse(localStorage.getItem('user')).email;
+      }).phoneNumber;
+    }
+
+    if (localStorage.getItem('user') === null) {
+      return this.adminList.account.find(ad => {
+        return ad.email === JSON.parse(localStorage.getItem('user')).email;
+      }).phoneNumber;
+    }
+  }
+
+  getAddress(): string | null {
+    if (firebase.auth().currentUser === null && JSON.parse(localStorage.getItem('user')) === null) {
+      return '';
+    }
+
+    if (firebase.auth().currentUser === null) {
+      return this.adminList.account.find(ad => {
+        return ad.email === JSON.parse(localStorage.getItem('user')).email;
+      }).address;
+    }
+
+    if (localStorage.getItem('user') === null) {
+      return this.adminList.account.find(ad => {
+        return ad.email === JSON.parse(localStorage.getItem('user')).email;
+      }).address;
+    }
   }
 }

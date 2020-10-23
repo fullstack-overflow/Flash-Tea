@@ -4,9 +4,11 @@ import { AuthenticationService } from '../../shared/authentication.service';
 
 import { ToastService } from '../../shared/toast.service';
 
-import { AdminListService } from '../../shared/admin-list.service';
-
 import { Router } from '@angular/router';
+
+import { UserService } from '../../shared/user.service';
+
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-info-user',
@@ -14,12 +16,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./info-user.page.scss'],
 })
 export class InfoUserPage implements OnInit {
-
+  user: any;
   constructor(
     public authService: AuthenticationService,
     public toastServide: ToastService,
     public router: Router,
-    public adminList: AdminListService
+    public userService: UserService
   ) { }
 
   ngOnInit() {
@@ -27,26 +29,29 @@ export class InfoUserPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    // const getUser = JSON.parse(localStorage.getItem('user'));
-    // const getadminList = JSON.parse(localStorage.getItem('shopsAccount'));
-    // if (getUser === null) {
-    //   return this.router.navigate(['login']);
-    // }
+  }
 
-    // if (getUser.emailVerified === false) {
-    //   return this.router.navigate(['verify-email']);
-    // }
-    // console.log(getadminList);
-    // const emailFind = getadminList.find(item => {
-    //   return item.email === getUser.email;
-    // });
-
-    // if (emailFind !== undefined && getUser !== null) {
-    //   return this.router.navigate(['root/shop-info']);
-    // }
+  getUser(): object | null {
+    if (JSON.parse(localStorage.getItem('user')) === null) {
+      return {
+        uid: '',
+        email: '',
+        displayName: '',
+        photoURL: '',
+        emailVerified: '',
+        phoneNumber: '',
+        address: ''
+      };
+    } else {
+      return JSON.parse(localStorage.getItem('user'));
+    }
   }
 
   logOut() {
     this.authService.signOut();
+  }
+
+  navigateToUpdateProfile() {
+    this.router.navigateByUrl('form-update');
   }
 }

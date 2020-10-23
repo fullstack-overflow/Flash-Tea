@@ -9,21 +9,24 @@
 
   <div class="item">
     <div class="content">
-      <h1>Name User</h1>
+      <h1>{{getUser().displayName}}</h1>
       <div class="row">
-        <p>Địa chỉ: P8 - Dalat City</p><button class="icongo" (click)="onClick()"></button>
+        <p>Uid: {{ getUser().uid }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
       </div>
       <div class="row">
-        <p>Email: FlashTea@gmail.com</p><button class="icongo" (click)="onClick()"></button>
+        <p>Email: {{ getUser().email }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
       </div>
       <div class="row">
-        <p>Số điện thoại: 0xxxxxxxx0</p><button class="icongo" (click)="onClick()"></button>
+        <p>Số điện thoại: {{ getUser().phoneNumber }}</p><button class="icongo"
+          (click)="navigateToUpdateProfile()"></button>
       </div>
       <div class="row">
-        <p>Address: Dalat City</p><button class="icongo" (click)="onClick()"></button>
+        <p>Address: {{ getUser().address }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
       </div>
     </div>
-    <img class="img-user" src="../../../assets/items/Drink&tea.jpg" />
+    <img *ngIf="getUser() === null" class="img-user" src="../../../assets/items/Drink&tea.jpg" />
+    <img class="img-user" src="{{  getUser().photoURL }}" />
+
 
     <div class="control">
       <ion-button class="btn-bill" (click)="onClick()" expand="block" fill="clear" shape="round">

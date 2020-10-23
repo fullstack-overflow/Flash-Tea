@@ -10,36 +10,52 @@ import { AdminListService } from '../../shared/admin-list.service';
 })
 export class InfoPage implements OnInit {
 
+  emailFind: any;
+  currentUser: any;
+  adminListStorage: any;
+
   constructor(
     public router: Router,
-    public adminList: AdminListService
+    public adminListService: AdminListService
   ) { }
 
   ngOnInit() {
   }
 
-  ionViewWillEnter() {
-    const getUser = JSON.parse(localStorage.getItem('user'));
-    const getadminList = JSON.parse(localStorage.getItem('shopsAccount'));
-    if (getUser === null) {
+  async ionViewWillEnter() {
+    // const getUser = JSON.parse(localStorage.getItem('user'));
+    // const getadminList = JSON.parse(localStorage.getItem('shopsAccount'));
+    this.currentUser = await JSON.parse(localStorage.getItem('user'));
+    this.adminListStorage = await JSON.parse(localStorage.getItem('shopsAccount'));
+  }
+
+  ionViewDidEnter() {
+    if (this.currentUser === null) {
       return this.router.navigate(['login']);
     }
 
-    if (getUser.emailVerified === false) {
+    if (this.currentUser.emailVerified === false) {
       return this.router.navigate(['verify-email']);
     }
 
-    const emailFind = this.adminList.account.find(item => {
-      return item.email === getUser.email;
-    });
+    if (this.adminListStorage === null) {
+      this.emailFind = this.adminListService.account.find(item => {
+        return item.email === this.currentUser.email;
+      });
+    }
 
-    if (emailFind !== undefined && getUser !== null) {
+    if (this.adminListService.account === null || this.adminListService.account === undefined) {
+      this.emailFind = this.adminListStorage.find(item => {
+        return item.email === this.currentUser.email;
+      });
+    }
+
+    if (this.emailFind !== undefined && this.currentUser !== null) {
       return this.router.navigate(['root/shop-info']);
     }
 
-    if (emailFind === undefined && getUser !== null) {
+    if (this.emailFind === undefined && this.currentUser !== null) {
       return this.router.navigate(['root/info-user']);
     }
   }
-
 }

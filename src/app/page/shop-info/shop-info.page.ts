@@ -5,10 +5,9 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../shared/authentication.service';
 
 import { ToastService } from '../../shared/toast.service';
-
-import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
+
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-shop-info',
@@ -16,25 +15,17 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./shop-info.page.scss'],
 })
 export class ShopInfoPage implements OnInit {
-
-  displayName: string;
-  email: string;
-  photoURL: string;
-
+  shopAccount: any;
   constructor(
     public authService: AuthenticationService,
     public toastServide: ToastService,
     public router: Router,
     public afStore: AngularFirestore,
-    public ngFireAuth: AngularFireAuth,
+    private location: Location
   ) { }
 
   ngOnInit() {
     const getShopAccount = JSON.parse(localStorage.getItem('user'));
-    // console.log(getShopAccount);
-    this.displayName = getShopAccount.displayName;
-    this.email = getShopAccount.email;
-    this.photoURL = getShopAccount.photoURL;
 
     if (getShopAccount.emailVerified === true) {
       const shopRef: AngularFirestoreDocument<any> = this.afStore.doc(`shops/${getShopAccount.uid}`);
@@ -47,8 +38,47 @@ export class ShopInfoPage implements OnInit {
     }
   }
 
+  ionViewDidUpdate() {
+    console.log(this.getShop());
+  }
+
+  getShop(): object | null {
+    const userStorage = JSON.parse(localStorage.getItem('user'));
+    const arrShopAccountStorage = JSON.parse(localStorage.getItem('shopsAccount'));
+    if (userStorage === null ||
+      userStorage === null && arrShopAccountStorage === null) {
+      return {
+        uid: '',
+        email: '',
+        displayName: '',
+        photoURL: '',
+        emailVerified: '',
+        phoneNumber: '',
+        address: ''
+      };
+    }
+
+    if (arrShopAccountStorage !== null && userStorage !== null) {
+      return arrShopAccountStorage.find(acc => {
+        return acc.uid === userStorage.uid;
+      });
+    }
+
+    if (arrShopAccountStorage === null && userStorage !== null) {
+      return userStorage;
+    }
+  }
+
+  navigateToFormUpdateShop() {
+    this.router.navigateByUrl('form-update-shop');
+  }
+
   logOut() {
     this.authService.signOut();
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   addItem() {

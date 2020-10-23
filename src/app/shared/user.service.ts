@@ -2,28 +2,19 @@ import { Injectable } from '@angular/core';
 
 import { CrudService } from './crud.service';
 
-type Admin = {
-  id?: string;
-  uid: string;
-  email: string;
-  displayName: string;
-  photoURL: string;
-  emailVerified: boolean;
-  phoneNumber?: number;
-  address?: string;
-};
+import { User } from '../types/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminListService {
-  account: Admin[];
+export class UserService {
+  userList: User[];
   constructor(
-    private crudService: CrudService
+    public crudService: CrudService
   ) {
-    this.crudService.getShopAccountFromFirebaseCloud().subscribe(data => {
+    this.crudService.getUserAccountFromFirebaseCloud().subscribe(data => {
       if (data) {
-        this.account = data.map(e => {
+        this.userList = data.map(e => {
           return {
             id: e.payload.doc.id,
             // tslint:disable-next-line:no-string-literal
@@ -42,8 +33,6 @@ export class AdminListService {
             address: e.payload.doc.data()['address']
           };
         });
-        localStorage.setItem('shopsAccount', JSON.stringify(this.account));
-        JSON.parse(localStorage.getItem('shopsAccount'));
       } else {
         localStorage.setItem('shopsAccount', null);
       }

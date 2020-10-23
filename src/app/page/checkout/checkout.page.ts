@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 
 import { ToastService } from '../../shared/toast.service';
 
+import { CrudService } from '../../shared/crud.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
@@ -19,7 +23,9 @@ export class CheckoutPage implements OnInit {
   total: number;
   constructor(
     public toast: ToastService,
-    private route: Router
+    private route: Router,
+    public crudService: CrudService,
+    private firestore: AngularFirestore
   ) { }
 
   ngOnInit() {
@@ -35,14 +41,20 @@ export class CheckoutPage implements OnInit {
   checkOutSucessful() {
     if (this.address === undefined || this.regexAddress() === false) {
       this.toast.presentToast('Please enter your address!');
+      return;
     }
 
     if (this.shipcod === true && this.masterCart === true) {
       this.toast.presentToast('Please choose one in two option for checkout!');
+      return;
     }
 
     if (this.shipcod === true && this.masterCart === false || this.shipcod === true && this.masterCart === undefined) {
+      const id = this.firestore.createId();
+      this.toast.presentToast('Checkout successfull! ^^');
+      // this.crudService.setCheckoutData(id, );
       this.doneCheckout();
+      return;
     }
 
     if (this.masterCart === true && this.shipcod === false || this.masterCart === true && this.shipcod === undefined) {
@@ -51,8 +63,12 @@ export class CheckoutPage implements OnInit {
         this.dateCheckout === undefined ||
         this.securityCode === undefined) {
         this.toast.presentToast('Please enter all fields!');
+        return;
       } else {
+        this.toast.presentToast('Checkout successfull! ^^');
+
         this.doneCheckout();
+        return;
       }
     }
   }
