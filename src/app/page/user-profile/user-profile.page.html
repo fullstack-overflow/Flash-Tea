@@ -9,23 +9,21 @@
 
   <div class="item">
     <div class="content">
-      <h1>{{getUser().displayName}}</h1>
+      <h1>{{ displayName }}</h1>
       <div class="row">
-        <p>Uid: {{ getUser().uid }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
+        <p>Uid: {{ uid }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
       </div>
       <div class="row">
-        <p>Email: {{ getUser().email }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
+        <p>Email: {{ email }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
       </div>
       <div class="row">
-        <p>Số điện thoại: {{ getUser().phoneNumber }}</p><button class="icongo"
-          (click)="navigateToUpdateProfile()"></button>
+        <p>Số điện thoại: {{ phoneNumber }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
       </div>
       <div class="row">
-        <p>Address: {{ getUser().address }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
+        <p>Address: {{ address }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
       </div>
     </div>
-    <img *ngIf="getUser() === null" class="img-user" src="../../../assets/items/Drink&tea.jpg" />
-    <img class="img-user" src="{{  getUser().photoURL }}" />
+    <img class="img-user" src="{{ photoURL }}" />
 
 
     <div class="control">

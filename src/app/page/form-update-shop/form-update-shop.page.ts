@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '../../services/toast.service';
 
 import { Router } from '@angular/router';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import { CrudService } from '../../shared/crud.service';
-import { AuthenticationService } from 'src/app/shared/authentication.service';
+import { CrudService } from '../../services/crud.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import * as firebase from 'firebase';
 
-import { AdminListService } from '../../shared/admin-list.service';
+import { AdminListService } from '../../services/admin-list.service';
 
 @Component({
   selector: 'app-form-update-shop',
@@ -75,7 +75,7 @@ export class FormUpdateShopPage implements OnInit {
 
     await this.uploadImageAndSetShopAccountData(shop, name, phoneNumber, address);
     await this.toastService.presentToast('Update profile sucessful! ^^');
-    await this.router.navigateByUrl('root/shop-info');
+    await this.router.navigateByUrl('root/home');
   }
 
   async uploadImageAndSetShopAccountData(shop, name, phoneNumber, address) {

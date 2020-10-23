@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '../../services/toast.service';
 
 import { Router } from '@angular/router';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import { CrudService } from '../../shared/crud.service';
-import { AuthenticationService } from 'src/app/shared/authentication.service';
+import { CrudService } from '../../services/crud.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import * as firebase from 'firebase';
@@ -34,7 +34,6 @@ export class FormUpdatePage implements OnInit {
     public authService: AuthenticationService,
     public router: Router,
     public toastService: ToastService,
-    private firestore: AngularFirestore,
     public crudService: CrudService,
     private afStorage: AngularFireStorage
   ) {
@@ -71,7 +70,7 @@ export class FormUpdatePage implements OnInit {
 
     await this.uploadImageAndSetUserAccountData(user, name, phoneNumber, address);
     await this.toastService.presentToast('Update profile sucessful! ^^');
-    await this.router.navigateByUrl('root/info-user');
+    await this.router.navigateByUrl('root/home');
   }
 
   async uploadImageAndSetUserAccountData(user, name, phoneNumber, address) {

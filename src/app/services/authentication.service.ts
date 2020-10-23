@@ -7,9 +7,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import * as firebase from 'firebase';
 import { NavController } from '@ionic/angular';
 
-import { UserService } from '../shared/user.service';
 import { CrudService } from './crud.service';
-import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +22,6 @@ export class AuthenticationService {
     public router: Router,
     public ngZone: NgZone,
     public navCtrl: NavController,
-    public userService: UserService,
     public crudService: CrudService
   ) {
     this.ngFireAuth.authState.subscribe(user => {

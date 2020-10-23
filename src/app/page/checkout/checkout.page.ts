@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '../../services/toast.service';
 
-import { CrudService } from '../../shared/crud.service';
+import { CrudService } from '../../services/crud.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 

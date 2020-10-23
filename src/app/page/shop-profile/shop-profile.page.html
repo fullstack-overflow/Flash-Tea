@@ -9,24 +9,23 @@
 
   <div class="item">
     <div class="content" (click)="navigateToFormUpdateShop()">
-      <h1>{{ getShop().displayName }}</h1>
+      <h1>{{ displayName }}</h1>
       <div class="row">
-        <p>Uid: {{ getShop().uid }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
+        <p>Uid: {{ uid }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
       </div>
       <div class="row">
-        <p>Email: {{ getShop().email }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
+        <p>Email: {{ email }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
       </div>
       <div class="row">
-        <p>Số điện thoại: {{ getShop().phoneNumber }}</p><button class="icongo"
-          (click)="navigateToFormUpdateShop()"></button>
+        <p>Số điện thoại: {{ phoneNumber }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
       </div>
 
       <div class="row">
-        <p>Address: {{ getShop().address }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
+        <p>Address: {{ address }}</p><button class="icongo" (click)="navigateToFormUpdateShop()"></button>
       </div>
     </div>
 
-    <img class="img-user" src="{{ getShop().photoURL }}" />
+    <img class="img-user" src="{{ photoURL }}" />
 
     <div class="control">
       <ion-button class="btn-bill" expand="block" fill="clear" shape="round">

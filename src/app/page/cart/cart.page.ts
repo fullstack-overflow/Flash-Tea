@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CrudService } from '../../shared/crud.service';
+import { CrudService } from '../../services/crud.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import * as firebase from 'firebase';
 
 import { Router } from '@angular/router';
 
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '../../services/toast.service';
 
 import { Location } from '@angular/common';
 
-import { ItemsDataService } from '../../shared/items-data.service';
+import { ItemsDataService } from '../../services/items-data.service';
 
 
 interface ItemArray {

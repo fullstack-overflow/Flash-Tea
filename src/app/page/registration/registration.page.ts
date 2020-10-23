@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../shared/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-registration',

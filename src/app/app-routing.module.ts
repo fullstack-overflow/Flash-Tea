@@ -2,11 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'root',
-  //   pathMatch: 'full'
-  // },
   {
     path: '',
     loadChildren: () => import('./page/root/root.module').then(m => m.RootPageModule)
@@ -36,16 +31,8 @@ const routes: Routes = [
     loadChildren: () => import('./page/all-list/all-list.module').then(m => m.AllListPageModule)
   },
   {
-    path: 'info-user',
-    loadChildren: () => import('./page/info-user/info-user.module').then(m => m.InfoUserPageModule)
-  },
-  {
     path: 'root',
     loadChildren: () => import('./page/root/root.module').then(m => m.RootPageModule)
-  },
-  {
-    path: 'shop-info',
-    loadChildren: () => import('./page/shop-info/shop-info.module').then(m => m.ShopInfoPageModule)
   },
   {
     path: 'storeregister',
@@ -73,15 +60,23 @@ const routes: Routes = [
   },
   {
     path: 'checkout',
-    loadChildren: () => import('./page/checkout/checkout.module').then( m => m.CheckoutPageModule)
+    loadChildren: () => import('./page/checkout/checkout.module').then(m => m.CheckoutPageModule)
   },
   {
     path: 'checkout-success',
-    loadChildren: () => import('./page/checkout-success/checkout-success.module').then( m => m.CheckoutSuccessPageModule)
+    loadChildren: () => import('./page/checkout-success/checkout-success.module').then(m => m.CheckoutSuccessPageModule)
   },
   {
     path: 'form-update-shop',
-    loadChildren: () => import('./page/form-update-shop/form-update-shop.module').then( m => m.FormUpdateShopPageModule)
+    loadChildren: () => import('./page/form-update-shop/form-update-shop.module').then(m => m.FormUpdateShopPageModule)
+  },
+  {
+    path: 'shop-profile/:shopid',
+    loadChildren: () => import('./page/shop-profile/shop-profile.module').then(m => m.ShopProfilePageModule)
+  },
+  {
+    path: 'user-profile/:userid',
+    loadChildren: () => import('./page/user-profile/user-profile.module').then(m => m.UserProfilePageModule)
   }
 ];
 
