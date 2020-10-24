@@ -5,6 +5,15 @@
   background-size: cover;
 }
 
+.home.tab-selected {
+  .icon-home {
+    width: 25px;
+    height: 25px;
+    background: url('../../../assets/icon/icon-home-active.svg') no-repeat;
+    background-size: cover;
+  }
+}
+
 .icon-list {
   width: 25px;
   height: 25px;
@@ -12,9 +21,27 @@
   background-size: cover;
 }
 
+.all-list.tab-selected {
+  .icon-list {
+    width: 25px;
+    height: 25px;
+    background: url('../../../assets/icon/icon-list-active.svg') no-repeat;
+    background-size: cover;
+  }
+}
+
 .icon-heart {
   width: 25px;
   height: 25px;
   background: url('../../../assets/icon/icon-profile.svg') no-repeat;
   background-size: cover;
+}
+
+.info.tab-selected {
+  .icon-heart {
+    width: 25px;
+    height: 25px;
+    background: url('../../../assets/icon/icon-profile-active.svg') no-repeat;
+    background-size: cover;
+  }
 }
