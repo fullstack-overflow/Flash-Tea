@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import * as firebase from 'firebase';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-form-update',
   templateUrl: './form-update.page.html',
@@ -35,7 +35,8 @@ export class FormUpdatePage implements OnInit {
     public router: Router,
     public toastService: ToastService,
     public crudService: CrudService,
-    private afStorage: AngularFireStorage
+    private afStorage: AngularFireStorage,
+    private location: Location
   ) {
 
   }
@@ -143,5 +144,9 @@ export class FormUpdatePage implements OnInit {
     }
 
     return firebase.auth().currentUser.phoneNumber;
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

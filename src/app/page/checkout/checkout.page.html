@@ -1,13 +1,14 @@
 <ion-content fullscreen>
   <div class="header">
-    <div class="icon"></div>
+    <div class="icon" (click)="goBack()"></div>
     <div class="title">
       <h5 class="title-name">Thanh toán</h5>
     </div>
   </div>
   <div class="delivery">
-    <p>Delivery address: </p>
-    <textarea placeholder="ex: c10/2 - tpdalat" [(ngModel)]="address" name="address" id="textarea"></textarea>
+    <p (click)="handleCheckout()">Delivery address & phone number: </p>
+    <textarea placeholder="ex: c10/2-p8-tpdalat, 01648888888" [(ngModel)]="addressAndPhoneNumber"
+      name="addressAndPhoneNumber" id="textarea"></textarea>
     <!-- <ion-textarea [(ngModel)]="address" name="address" id="textarea"></ion-textarea> -->
   </div>
 

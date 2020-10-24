@@ -17,15 +17,17 @@ const routes: Routes = [
         loadChildren: () => import('../all-list/all-list.module')
           .then(m => m.AllListPageModule)
       }, {
-        path: 'info',
-        loadChildren: () => import('../info/info.module')
-          .then(m => m.InfoPageModule)
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
       }, {
         path: 'user-profile/:userid',
         loadChildren: () => import('../user-profile/user-profile.module').then(m => m.UserProfilePageModule)
       }, {
         path: 'shop-profile/:shopid',
         loadChildren: () => import('../shop-profile/shop-profile.module').then(m => m.ShopProfilePageModule)
+      }, {
+        path: 'user-bill/:userid',
+        loadChildren: () => import('../user-bill/user-bill.module').then(m => m.UserBillPageModule)
       }, {
         path: 'cart',
         loadChildren: () => import('../cart/cart-routing.module')

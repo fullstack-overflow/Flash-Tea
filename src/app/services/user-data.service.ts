@@ -4,15 +4,13 @@ import { User } from '../types/user';
 
 import { CrudService } from './crud.service';
 
-import { AngularFireAuth } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
   userProfile: User;
   constructor(
-    private crudService: CrudService,
-    public ngFireAuth: AngularFireAuth
+    private crudService: CrudService
   ) { }
 
   initUserProfile(userId: string): void {

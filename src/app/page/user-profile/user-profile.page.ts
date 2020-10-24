@@ -53,8 +53,8 @@ export class UserProfilePage implements OnInit {
       this.uid = await this.currentUser.uid;
       this.email = await this.currentUser.email;
       this.photoURL = await this.currentUser.photoURL;
-      await this.toats.presentToast('Profile page not ready, please try again! Thank you');
-      await this.router.navigate(['root/home']);
+      // await this.toats.presentToast('Profile page not ready, please try again! Thank you');
+      // await this.router.navigate(['root/home']);
     }
   }
 
@@ -67,6 +67,10 @@ export class UserProfilePage implements OnInit {
       this.address = await this.userDataService.userProfile.address;
       this.phoneNumber = await this.userDataService.userProfile.phoneNumber;
     }
+  }
+
+  navigateToOrderPage() {
+    this.router.navigateByUrl(`root/user-bill/${this.userId}`);
   }
 
   goBack() {

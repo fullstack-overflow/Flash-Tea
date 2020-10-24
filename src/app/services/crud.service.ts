@@ -21,6 +21,10 @@ export class CrudService {
     return this.firestore.collection('users').snapshotChanges();
   }
 
+  getBillOrderForCustomer() {
+    return this.firestore.collection('bill').snapshotChanges();
+  }
+
   setAddItemsShopData(id, name, price, description, img, shopName) {
     const shopRef: AngularFirestoreDocument<any> = this.firestore.doc(`items/${id}`);
     const shopItems = {
@@ -31,14 +35,14 @@ export class CrudService {
     });
   }
 
-  setCheckoutData(id, shopName, userName, itemName, totalPrice, address) {
-    const checkoutRef: AngularFirestoreDocument<any> = this.firestore.doc(`checkout/${id}`);
-    const checkout = {
+  setBillData(id, data, dateOrder, total, detail, coderOrder) {
+    const billRef: AngularFirestoreDocument<any> = this.firestore.doc(`bill/${id}`);
+    const bill = {
       id,
-      shopName,
-      userName, itemName, totalPrice, address
+      data,
+      dateOrder, total, detail, coderOrder
     };
-    return checkoutRef.set(checkout, {
+    return billRef.set(bill, {
       merge: true
     });
   }

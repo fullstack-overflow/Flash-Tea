@@ -6,6 +6,8 @@ import { ToastService } from '../../services/toast.service';
 import { CrudService } from '../../services/crud.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { Location } from '@angular/common';
+import { ItemsDataService } from 'src/app/services/items-data.service';
 
 @Component({
   selector: 'app-checkout',
@@ -13,7 +15,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./checkout.page.scss'],
 })
 export class CheckoutPage implements OnInit {
-  address: string;
+
+  addressAndPhoneNumber: string;
   shipcod: boolean;
   masterCart: boolean;
   cardNumber: string;
@@ -21,26 +24,78 @@ export class CheckoutPage implements OnInit {
   dateCheckout: string;
   securityCode: number;
   total: number;
+
+  data: any;
+  datetimeOrders: string;
+  orderId: string;
+
+  currentUser: any;
+
   constructor(
     public toast: ToastService,
     private route: Router,
     public crudService: CrudService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private location: Location,
+    public itemsDataService: ItemsDataService
   ) { }
 
   ngOnInit() {
     this.total = Number(JSON.parse(localStorage.getItem('total')));
+    this.data = [];
   }
 
+  async ionViewWillEnter() {
+    await this.itemsDataService.initItemsData();
+    this.currentUser = await JSON.parse(localStorage.getItem('user'));
+  }
+
+  getItemsCheckoutStorage() {
+    this.itemsDataService.items.forEach(item => {
+      // tslint:disable-next-line:prefer-const
+      let itemsLocalStorage = JSON.parse(localStorage.getItem(item.id));
+      if (itemsLocalStorage !== null) {
+        this.data = this.data.concat(itemsLocalStorage);
+      }
+    });
+  }
+
+  setStorage() {
+    this.itemsDataService.items.forEach(item => {
+      localStorage.removeItem(item.id);
+    });
+    localStorage.removeItem('count');
+    localStorage.removeItem('total');
+  }
+
+  getDatetimeOrders() {
+    const today = new Date();
+    this.datetimeOrders = `${today.getHours()}:${today.getMinutes()} - ${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
+  }
+
+  async handleCheckout() {
+    await this.getItemsCheckoutStorage();
+    await this.getDatetimeOrders();
+    this.orderId = await this.firestore.createId();
+    await this.toast.presentToast('Loading.., please wait! Thanks');
+    await this.crudService.setBillData(this.currentUser.uid,
+      this.data,
+      this.datetimeOrders,
+      this.total,
+      this.addressAndPhoneNumber,
+      this.orderId
+    );
+    await this.setStorage();
+  }
 
   regexAddress(): boolean {
     const regex = new RegExp(`[A-Za-z0-9'\.\-\s\,]+[a-zA-Z0-9]+`);
-    return regex.test(this.address);
+    return regex.test(this.addressAndPhoneNumber);
   }
 
   checkOutSucessful() {
-    if (this.address === undefined || this.regexAddress() === false) {
-      this.toast.presentToast('Please enter your address!');
+    if (this.addressAndPhoneNumber === undefined || this.regexAddress() === false) {
+      this.toast.presentToast('Please enter delivery address & your phone number!');
       return;
     }
 
@@ -50,9 +105,7 @@ export class CheckoutPage implements OnInit {
     }
 
     if (this.shipcod === true && this.masterCart === false || this.shipcod === true && this.masterCart === undefined) {
-      const id = this.firestore.createId();
       this.toast.presentToast('Checkout successfull! ^^');
-      // this.crudService.setCheckoutData(id, );
       this.doneCheckout();
       return;
     }
@@ -73,7 +126,13 @@ export class CheckoutPage implements OnInit {
     }
   }
 
-  doneCheckout() {
-    this.route.navigateByUrl('checkout-success');
+  async doneCheckout() {
+    await this.handleCheckout();
+    await this.toast.presentToast('Checkout succesfully! Thank you');
+    await this.route.navigateByUrl('checkout-success');
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

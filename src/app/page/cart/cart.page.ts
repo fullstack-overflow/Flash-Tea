@@ -81,7 +81,12 @@ export class CartPage implements OnInit {
     this.location.back();
   }
 
-  navigateToCheckout() {
-    this.router.navigateByUrl('checkout');
+  checkCurrentUserAndNavigateToCheckout() {
+    if (firebase.auth().currentUser === null) {
+      this.toast.presentToast('You must login for checkout items');
+      this.router.navigateByUrl('login');
+    } else {
+      this.router.navigateByUrl('checkout');
+    }
   }
 }
