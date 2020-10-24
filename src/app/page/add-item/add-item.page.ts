@@ -13,7 +13,7 @@ import * as firebase from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { CrudService } from '../../services/crud.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.page.html',
@@ -37,7 +37,8 @@ export class AddItemPage implements OnInit {
     public toastService: ToastService,
     private firestore: AngularFirestore,
     public crudService: CrudService,
-    private afStorage: AngularFireStorage
+    private afStorage: AngularFireStorage,
+    private location: Location
   ) {
     this.addItemForm = new FormGroup({
       image: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -91,5 +92,9 @@ export class AddItemPage implements OnInit {
   changeImage() {
     this.fileImage = (document.getElementById('image') as HTMLInputElement).files[0];
     this.filePathImage = this.fileImage.name;
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

@@ -8,7 +8,7 @@
   </div>
 
   <div class="item">
-    <div class="content">
+    <div class="content" (click)="navigateToUpdateProfile()">
       <h1>{{ displayName }}</h1>
       <div class="row">
         <p>Uid: {{ uid }}</p><button class="icongo" (click)="navigateToUpdateProfile()"></button>
@@ -27,7 +27,7 @@
 
 
     <div class="control">
-      <ion-button class="btn-bill" (click)="onClick()" expand="block" fill="clear" shape="round">
+      <ion-button class="btn-bill" (click)="navigateToOrderPage()" expand="block" fill="clear" shape="round">
         Kiểm tra đơn hàng
       </ion-button>
       <ion-button class="btn" (click)="logOut()" expand="block" fill="clear" shape="round">

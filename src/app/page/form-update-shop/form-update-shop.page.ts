@@ -13,7 +13,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import * as firebase from 'firebase';
 
 import { AdminListService } from '../../services/admin-list.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-form-update-shop',
   templateUrl: './form-update-shop.page.html',
@@ -36,7 +36,8 @@ export class FormUpdateShopPage implements OnInit {
     public toastService: ToastService,
     public crudService: CrudService,
     private afStorage: AngularFireStorage,
-    public adminList: AdminListService
+    public adminList: AdminListService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -172,5 +173,9 @@ export class FormUpdateShopPage implements OnInit {
         return ad.email === JSON.parse(localStorage.getItem('user')).email;
       }).address;
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

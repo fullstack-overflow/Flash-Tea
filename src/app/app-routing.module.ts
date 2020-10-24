@@ -43,10 +43,6 @@ const routes: Routes = [
     loadChildren: () => import('./page/add-item/add-item.module').then(m => m.AddItemPageModule)
   },
   {
-    path: 'info',
-    loadChildren: () => import('./page/info/info.module').then(m => m.InfoPageModule)
-  },
-  {
     path: 'cart',
     loadChildren: () => import('./page/cart/cart.module').then(m => m.CartPageModule)
   },
@@ -77,6 +73,14 @@ const routes: Routes = [
   {
     path: 'user-profile/:userid',
     loadChildren: () => import('./page/user-profile/user-profile.module').then(m => m.UserProfilePageModule)
+  },
+  {
+    path: 'user-bill/:userid',
+    loadChildren: () => import('./page/user-bill/user-bill.module').then(m => m.UserBillPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./page/profile/profile.module').then(m => m.ProfilePageModule)
   }
 ];
 
