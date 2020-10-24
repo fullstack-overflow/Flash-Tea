@@ -1,9 +1,13 @@
 .header {
   width: 100%;
-  margin: 7% 0 1% 0;
+  background-color: #FFFFFF;
   display: flex;
+  padding: 7% 0 1% 0;
   justify-content: center;
   align-items: center;
+
+  position: fixed;
+  z-index: 100000;
 
   .icon {
     margin-left: 4%;
@@ -58,7 +62,7 @@
   align-items: center;
   text-align: center;
   width: 90%;
-  margin: 24px 0 0 5%;
+  margin: 110px 0 0 5%;
   background: #FFFFFF;
   border: 0.2px solid #f0f1f5;
   border-radius: 8px;
