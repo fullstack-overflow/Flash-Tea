@@ -33,7 +33,8 @@
       </div>
     </div>
   </div>
-  <ion-button class="btn" (click)="navigateToCheckout()" expand="block" fill="clear" shape="round">
+  <ion-button [disabled]="total == 0" class="btn" (click)="checkCurrentUserAndNavigateToCheckout()" expand="block"
+    fill="clear" shape="round">
     Thanh toán
   </ion-button>
 </ion-content>

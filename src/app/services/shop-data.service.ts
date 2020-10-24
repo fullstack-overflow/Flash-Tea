@@ -38,6 +38,25 @@ export class ShopDataService {
       }).find(shop => {
         return shop.uid === shopId;
       });
+
+      if (this.shopProfile === undefined) {
+        this.shopProfile = {
+          // tslint:disable-next-line:no-string-literal
+          uid: 'uid',
+          // tslint:disable-next-line:no-string-literal
+          email: '',
+          // tslint:disable-next-line:no-string-literal
+          displayName: '',
+          // tslint:disable-next-line:no-string-literal
+          photoURL: '',
+          // tslint:disable-next-line:no-string-literal
+          emailVerified: false,
+          // tslint:disable-next-line:no-string-literal
+          phoneNumber: 0,
+          // tslint:disable-next-line:no-string-literal
+          address: ''
+        };
+      }
     });
   }
 }

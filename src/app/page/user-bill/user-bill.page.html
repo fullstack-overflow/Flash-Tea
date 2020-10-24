@@ -1,0 +1,41 @@
+<ion-content fullscreen>
+  <div class="header">
+    <div class="icon"></div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <div class="icon-search"></div>
+    </div>
+    <div class="avt"></div>
+  </div>
+  <h1>Đơn hàng của tôi.</h1>
+  <div class="my-bill">
+    <div class="bill">
+      <div class="row-1">
+        <p>mã đơn hàng: </p><a href="#"> #{{ codeOrder }}</a>
+      </div>
+      <div class="row-2">
+        <p>Chi tiết: </p><a href="#">{{ detail }}</a>
+      </div>
+      <div class="row-2">
+        <p>Thời gian nhận hàng: </p><a href="#">khoảng sau 1 h kể từ thời gian này: {{ dateOrder }}</a>
+      </div>
+      <div class="row-3">
+        <h2>Tổng tiền:</h2>
+        <p>{{ total }} đ</p>
+      </div>
+      <!-- <ion-button class="btn" (click)="presentAlert()" expand="block" fill="clear" shape="round">
+        Hủy đơn hàng.
+      </ion-button> -->
+    </div>
+    <div class="my-items" *ngFor="let item of data">
+      <div class="item">
+        <div class="img"><img style="width:40px" src="{{ item.img }}"></div>
+        <div class="desc">
+          <h3>{{ item.total }} đ</h3>
+          <p>{{ item.name }}</p>
+          <p>Số lượng: {{ item.quantity }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -23,6 +23,7 @@ export class ItemPage implements OnInit {
   name = '';
   price = 0;
   img = '';
+  shopName = '';
 
   itemDetail: object;
 
@@ -53,6 +54,7 @@ export class ItemPage implements OnInit {
       this.name = await this.itemsDataService.itemDetail.name;
       this.price = await Number(this.itemsDataService.itemDetail.price);
       this.img = await this.itemsDataService.itemDetail.img;
+      this.shopName = await this.itemsDataService.itemDetail.shopName;
       this.itemDetail = await this.itemsDataService.itemDetail;
     }
   }
@@ -70,13 +72,7 @@ export class ItemPage implements OnInit {
     const getItemLocalStorage = JSON.parse(localStorage.getItem(itemDetail.id));
     const getCountLocalStorage = JSON.parse(localStorage.getItem('count'));
     const getTotalLocalStorage = JSON.parse(localStorage.getItem('total'));
-
-    // this.addToCartService.addToCartDetailItems(this.itemDetail, this.countNumber)
     this.addToCartService.addToCartDetailItems(itemDetail, countNumber, getItemLocalStorage, getCountLocalStorage, getTotalLocalStorage);
-  }
-
-  click() {
-    console.log(this.itemsDataService.itemDetail.name);
   }
 
   goBack() {

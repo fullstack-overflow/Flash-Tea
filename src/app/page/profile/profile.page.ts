@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ShopDataService } from '../../services/shop-data.service';
 
+import * as firebase from 'firebase';
 import { AdminListService } from '../../services/admin-list.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
-  selector: 'app-info',
-  templateUrl: './info.page.html',
-  styleUrls: ['./info.page.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
-export class InfoPage implements OnInit {
-
-  emailFind: any;
+export class ProfilePage implements OnInit {
+  // emailFind: any;
   currentUser: any;
   adminListStorage: any;
 
@@ -38,23 +40,29 @@ export class InfoPage implements OnInit {
       return this.router.navigate(['verify-email']);
     }
 
-    if (this.adminListStorage === null) {
-      this.emailFind = this.adminListService.account.find(item => {
-        return item.email === this.currentUser.email;
-      });
-    }
-
     if (this.adminListService.account === null || this.adminListService.account === undefined) {
-      this.emailFind = this.adminListStorage.find(item => {
+      const result = this.adminListStorage.find(item => {
         return item.email === this.currentUser.email;
       });
+
+      if (result !== undefined && this.currentUser !== null) {
+        return this.router.navigate([`root/shop-profile/${result.id}`]);
+      }
+
+      if (result === undefined && this.currentUser !== null) {
+        return this.router.navigate([`root/user-profile/${this.currentUser.uid}`]);
+      }
     }
 
-    if (this.emailFind !== undefined && this.currentUser !== null) {
-      return this.router.navigate([`root/shop-profile/${this.emailFind.id}`]);
+    const result2 = this.adminListService.account.find(item => {
+      return item.email === this.currentUser.email;
+    });
+
+    if (result2 !== undefined && this.currentUser !== null) {
+      return this.router.navigate([`root/shop-profile/${result2.id}`]);
     }
 
-    if (this.emailFind === undefined && this.currentUser !== null) {
+    if (result2 === undefined && this.currentUser !== null) {
       return this.router.navigate([`root/user-profile/${this.currentUser.uid}`]);
     }
   }
